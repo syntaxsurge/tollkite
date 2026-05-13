@@ -586,10 +586,10 @@ Before creating a new helper or service file:
   `src/hooks/use-wallet-balances.ts`, so displayed balances follow the active
   settlement token and network environment.
 - The app favicon is generated from the app logo and lives only at
-  `src/app/favicon.ico`; the shared logo path is resolved from
-  `NEXT_PUBLIC_APP_LOGO_PATH` through `src/lib/config/site.ts` and defaults to
+  `src/app/favicon.ico`; public image branding lives at
   `public/images/tollkite-logo.png`. The web app manifest is generated from
-  `src/app/manifest.ts` and uses the shared site config for app name and logo.
+  `src/app/manifest.ts` and uses `NEXT_PUBLIC_APP_NAME` through
+  `src/lib/config/site.ts`.
 - Authenticated app routes use compact icon-led sidebars in
   `src/components/layout/app-sidebar.tsx` and
   `src/components/layout/admin-sidebar.tsx` for workspace and admin navigation.
