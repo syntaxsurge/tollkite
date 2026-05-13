@@ -1,0 +1,38 @@
+packages:
+  - .
+
+allowBuilds:
+  '@tailwindcss/oxide': true
+  bufferutil: true
+  esbuild: true
+  keccak: true
+  sharp: true
+  unrs-resolver: true
+  utf-8-validate: true
+
+minimumReleaseAgeExclude:
+  - '@vercel/backends@0.7.2'
+  - '@vercel/build-utils@13.26.1'
+  - '@vercel/cervel@0.1.7'
+  - '@vercel/elysia@0.1.80'
+  - '@vercel/express@0.1.90'
+  - '@vercel/fastify@0.1.83'
+  - '@vercel/gatsby-plugin-vercel-builder@2.2.7'
+  - '@vercel/h3@0.1.89'
+  - '@vercel/hono@0.2.83'
+  - '@vercel/koa@0.1.63'
+  - '@vercel/nestjs@0.2.84'
+  - '@vercel/next@4.17.4'
+  - '@vercel/node@5.8.4'
+  - '@vercel/python@6.43.1'
+  - '@vercel/static-build@2.9.30'
+  - vercel@54.4.1
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - bufferutil
+  - esbuild
+  - keccak
+  - sharp
+  - unrs-resolver
+  - utf-8-validate

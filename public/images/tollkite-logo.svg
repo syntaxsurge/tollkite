@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Tollkite logo</title>
+  <desc id="desc">A cyan and green autonomous agent kite with a proof token tail.</desc>
+  <rect width="1024" height="1024" rx="192" fill="#F6F8FB"/>
+  <path d="M512 132 237 455l275 74Z" fill="#00C2FF"/>
+  <path d="M512 132v397l275-74Z" fill="#2AF598"/>
+  <path d="M237 455 512 730l275-275-275 74Z" fill="#0B1020"/>
+  <path d="M512 132v598M237 455h550" fill="none" stroke="#F6F8FB" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/>
+  <circle cx="512" cy="455" r="70" fill="#0B1020" stroke="#F6F8FB" stroke-width="28"/>
+  <circle cx="376" cy="455" r="31" fill="#00C2FF" stroke="#F6F8FB" stroke-width="20"/>
+  <circle cx="648" cy="455" r="31" fill="#2AF598" stroke="#F6F8FB" stroke-width="20"/>
+  <circle cx="512" cy="280" r="31" fill="#F6F8FB" stroke="#F6F8FB" stroke-width="10"/>
+  <circle cx="512" cy="642" r="31" fill="#00C2FF" stroke="#F6F8FB" stroke-width="20"/>
+  <circle cx="490" cy="464" r="12" fill="#00C2FF"/>
+  <circle cx="536" cy="464" r="12" fill="#00C2FF"/>
+  <path d="M503 713c-5 53-55 74-101 70-50-4-84-33-85-72" fill="none" stroke="#00C2FF" stroke-linecap="round" stroke-width="22"/>
+  <path d="M502 709c-27 70-127 22-158 70-20 30 10 67 70 63" fill="none" stroke="#2AF598" stroke-linecap="round" stroke-width="22"/>
+  <path d="M506 756c-34 34-90 4-125 34-24 20-13 54 29 68" fill="none" stroke="#00C2FF" stroke-linecap="round" stroke-width="22"/>
+  <circle cx="316" cy="706" r="19" fill="#00C2FF"/>
+  <circle cx="410" cy="842" r="20" fill="#00C2FF"/>
+  <rect x="436" y="772" width="46" height="34" rx="8" fill="#2AF598"/>
+  <path d="M480 789h191" fill="none" stroke="#FFB547" stroke-linecap="round" stroke-width="20" stroke-dasharray="36 28"/>
+  <circle cx="719" cy="790" r="54" fill="#FFB547"/>
+  <circle cx="719" cy="790" r="38" fill="#F6F8FB"/>
+  <path d="m694 789 17 17 34-37" fill="none" stroke="#FFB547" stroke-linecap="round" stroke-linejoin="round" stroke-width="15"/>
+</svg>
