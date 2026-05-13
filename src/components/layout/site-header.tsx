@@ -33,7 +33,7 @@ export function SiteHeader() {
         <Link href='/' className='group flex shrink-0 items-center gap-3'>
           <span className='logo-mark-surface ring-border/80 group-hover:ring-primary/45 grid h-11 w-11 shrink-0 place-items-center rounded-lg p-1.5 ring-1 transition group-hover:scale-[1.02]'>
             <Image
-              src='/images/tollkite-logo.png'
+              src={siteConfig.logoPath}
               alt={siteConfig.name}
               width={44}
               height={44}

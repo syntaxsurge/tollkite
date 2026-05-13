@@ -4,8 +4,8 @@ import { ArrowLeft } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { buttonClasses } from '@/components/ui/button'
+import { getMarketplaceOrderWithProviderStatus } from '@/features/marketplace/async-provider-status'
 import { OrderStatusClient } from '@/features/marketplace/order-status-client'
-import { getMarketplaceOrderById } from '@/features/marketplace/orders'
 
 type OrderDetailPageProps = {
   params: Promise<{
@@ -17,7 +17,7 @@ export default async function OrderDetailPage({
   params
 }: OrderDetailPageProps) {
   const { orderId } = await params
-  const order = (await getMarketplaceOrderById(orderId)) ?? null
+  const order = (await getMarketplaceOrderWithProviderStatus(orderId)) ?? null
 
   return (
     <div className='space-y-6'>

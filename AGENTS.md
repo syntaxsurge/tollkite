@@ -433,12 +433,15 @@ Before creating a new helper or service file:
 - `POST /api/orders` — validates a buyer API request payload and returns a
   payment-required order record with a stable provider idempotency key for the
   selected marketplace product.
-- `GET /api/orders/[orderId]` — returns an order lifecycle record.
+- `GET /api/orders/[orderId]` — returns an order lifecycle record and reconciles
+  active async provider jobs through the shared provider-status sync before
+  responding.
 - `GET /api/orders/[orderId]/provider-status` — polls a provider adapter for
   long-running job status, compares final credit-metered usage with the prepaid
   quote, locks results that require a metered delta, returns the latest provider
-  payload plus the sanitized upstream request trace, and persists only compact
-  status/result metadata for response bodies.
+  payload plus the sanitized upstream request trace, persists only compact
+  status/result metadata for response bodies, and stores the latest poll attempt
+  or poll error on the order for refresh-stable diagnostics.
   `POST /api/orders/[orderId]/provider-status` retries the provider call for
   paid failed orders that still have a retryable/refundable settled request,
   without creating a second buyer payment.
@@ -492,7 +495,9 @@ Before creating a new helper or service file:
   settle signed payment-token transfers through the configured facilitator,
   start credit-metered async provider work only after settlement, send the
   order's provider idempotency key to upstream POST endpoints, return paid
-  provider responses or pollable job records, and attach receipt metadata.
+  provider responses or pollable job records, attach receipt metadata, and use
+  the generic `x-app-order-id` request header to bind hosted calls to existing
+  gateway orders.
 - `POST /api/x402/orders/[orderId]/claim` — protects metered result release with
   x402 when final provider usage exceeds the prepaid quote, settles the delta in
   the configured settlement token, unlocks the stored provider result, and
@@ -581,10 +586,10 @@ Before creating a new helper or service file:
   `src/hooks/use-wallet-balances.ts`, so displayed balances follow the active
   settlement token and network environment.
 - The app favicon is generated from the app logo and lives only at
-  `src/app/favicon.ico`; public image branding lives at
+  `src/app/favicon.ico`; the shared logo path is resolved from
+  `NEXT_PUBLIC_APP_LOGO_PATH` through `src/lib/config/site.ts` and defaults to
   `public/images/tollkite-logo.png`. The web app manifest is generated from
-  `src/app/manifest.ts` and uses `NEXT_PUBLIC_APP_NAME` through
-  `src/lib/config/site.ts`.
+  `src/app/manifest.ts` and uses the shared site config for app name and logo.
 - Authenticated app routes use compact icon-led sidebars in
   `src/components/layout/app-sidebar.tsx` and
   `src/components/layout/admin-sidebar.tsx` for workspace and admin navigation.
@@ -822,8 +827,8 @@ Before creating a new helper or service file:
   health, production narrative, and tiered provider revenue split.
 - `/provider/products` lists provider API products in the shared server-fed
   table for the connected owner wallet with status context, price, call volume,
-  gateway path, listing links, bulk deletion for owner-created rows, and
-  next-step management actions for drafts, paused listings, and live products.
+  gateway path, owner-scoped bulk deletion, and a per-row actions menu for
+  managing or deleting individual provider-created listings with confirmation.
 - `/provider/products/new` uses
   `src/features/marketplace/provider-product-form.tsx` and
   `src/features/marketplace/schemas.ts` to validate provider product metadata,

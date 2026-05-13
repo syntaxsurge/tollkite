@@ -66,6 +66,24 @@ export type MarketplaceOrder = {
     retryUntil: string
     attempts: number
   }
+  latestProviderStatusPoll?: {
+    polledAt: string
+    httpStatus: number
+    providerStatus?: string
+    resultReleaseStatus?:
+      | 'not_applicable'
+      | 'reserved'
+      | 'released'
+      | 'provider_retrying'
+      | 'delta_payment_required'
+      | 'credit_due'
+      | 'refundable'
+      | 'refunded'
+    externalJobId?: string
+    resultUrl?: string
+    error?: string
+    attempts: number
+  }
   createdAt: string
   updatedAt: string
   resultUrl?: string

@@ -35,6 +35,7 @@ import {
   paymentTokenTransferMethod,
   x402Network
 } from '@/lib/config/chains'
+import { appAgentRunIdHeader, getAppOrderIdHeader } from '@/lib/config/headers'
 import {
   getApiPaymentPayTo,
   getEscrowPaymentId,
@@ -102,8 +103,8 @@ async function handlePaidProductCall(
   rawPayload: unknown
 ) {
   const product = await getProductBySlug(slug)
-  const requestedOrderId = request.headers.get('x-tollkite-order-id')
-  const agentRunId = request.headers.get('x-app-agent-run-id') ?? undefined
+  const requestedOrderId = getAppOrderIdHeader(name => request.headers.get(name))
+  const agentRunId = request.headers.get(appAgentRunIdHeader) ?? undefined
   const existingOrder = requestedOrderId
     ? await getMarketplaceOrderById(requestedOrderId)
     : undefined
@@ -119,6 +120,28 @@ async function handlePaidProductCall(
       },
       { status: 404 }
     )
+  }
+
+  if (existingOrder && existingOrder.status !== 'payment_required') {
+    return NextResponse.json({
+      order: existingOrder,
+      data: existingOrder.responsePayload ?? {
+        status: existingOrder.status,
+        requestId: existingOrder.requestId,
+        externalJobId: existingOrder.externalJobId,
+        resultUrl: existingOrder.resultUrl
+      },
+      receipt: existingOrder.receiptId
+        ? {
+            id: existingOrder.receiptId,
+            orderId: existingOrder.id,
+            explorerUrl: existingOrder.explorerUrl,
+            resultUrl: existingOrder.resultUrl
+          }
+        : undefined,
+      message:
+        'This order has already been paid. The existing order state was returned without creating another payment.'
+    })
   }
 
   const providerConfigurationIssue = getProviderConfigurationIssue(product)
@@ -1101,6 +1124,21 @@ async function reservePrepaidEscrow({
       ? BigInt(requirement.amount ?? '0')
       : toAtomicPaymentAmount(resolvedPrice.amountUsd)
   await waitForEscrowSettlementTransaction(settlement.transaction)
+  const existingState = await getEscrowPaymentState(paymentId).catch(
+    () => 'none'
+  )
+
+  if (existingState === 'reserved') {
+    return {
+      paymentId,
+      escrowAddress
+    }
+  }
+
+  if (existingState !== 'none') {
+    throw new Error(`Escrow payment is already ${existingState}.`)
+  }
+
   const reserve = await reserveEscrowPayment({
     paymentId,
     token: requirement.asset,

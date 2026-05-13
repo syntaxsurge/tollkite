@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#F6F8FB',
     icons: [
       {
-        src: '/images/tollkite-logo.png',
+        src: siteConfig.logoPath,
         sizes: '1024x1024',
         type: 'image/png',
         purpose: 'any'

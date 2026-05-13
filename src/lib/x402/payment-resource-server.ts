@@ -31,6 +31,7 @@ import {
   toPaymentAssetAmount,
   x402Network
 } from '@/lib/config/chains'
+import { getAppOrderIdHeader } from '@/lib/config/headers'
 import { siteConfig } from '@/lib/config/site'
 import { getApiPaymentPayTo } from '@/lib/contracts/api-payment-escrow'
 import {
@@ -81,7 +82,7 @@ async function canPriceProductFromContext(
     return false
   }
 
-  const orderId = context.adapter.getHeader?.('x-tollkite-order-id')
+  const orderId = getAppOrderIdHeader(name => context.adapter.getHeader?.(name))
   const order = orderId ? await getMarketplaceOrderById(orderId) : undefined
 
   if (!order || order.productSlug !== product.slug) {
@@ -116,8 +117,7 @@ const paidCallRoute: RouteConfig = {
     },
     maxTimeoutSeconds: x402MaxTimeoutSeconds
   },
-  description:
-    'USDT-settled Tollkite API call on Kite through the x402 protocol.',
+  description: `${paymentTokenSymbol}-settled ${siteConfig.name} API call on the configured app chain through the x402 protocol.`,
   mimeType: 'application/json',
   unpaidResponseBody: async context => {
     const product = await requireProductFromContext(context)

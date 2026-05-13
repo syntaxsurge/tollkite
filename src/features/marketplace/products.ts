@@ -230,6 +230,20 @@ export async function deleteAdminProviderProducts(slugs: string[]) {
   )
 }
 
+export async function deleteProviderProducts(
+  slugs: string[],
+  ownerWallet?: string | null
+) {
+  if (!ownerWallet) {
+    return 0
+  }
+
+  return await getConvexClient().mutation(
+    api.apiProducts.deleteProviderCatalogProducts,
+    { slugs, ownerWallet }
+  )
+}
+
 export async function getMarketplaceMetrics() {
   const products = await getPublishedProducts()
   const totalCalls = products.reduce((sum, product) => sum + product.calls, 0)

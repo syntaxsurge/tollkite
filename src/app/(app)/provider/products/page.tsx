@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 
-import { ExternalLink, Plus, Settings } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 import {
   ServerDataTable,
@@ -14,6 +14,7 @@ import {
   type ApiProductStatus,
   getProviderOwnedProducts
 } from '@/features/marketplace/products'
+import { ProviderProductRowActions } from '@/features/marketplace/provider-product-row-actions'
 import { productStatusLabels } from '@/features/marketplace/status'
 import { WALLET_ADDRESS_COOKIE } from '@/lib/auth/wallet-session'
 import {
@@ -155,24 +156,8 @@ function productColumns(): ServerDataTableColumn<ApiProduct>[] {
     {
       key: 'actions',
       label: 'Actions',
-      render: product => (
-        <div className='flex flex-wrap gap-2'>
-          <Link
-            href={`/provider/products/${product.slug}`}
-            className={buttonClasses({ size: 'sm' })}
-          >
-            <Settings className='h-4 w-4' aria-hidden />
-            Manage
-          </Link>
-          <Link
-            href={`/marketplace/${product.slug}`}
-            className={buttonClasses({ variant: 'outline', size: 'sm' })}
-          >
-            <ExternalLink className='h-4 w-4' aria-hidden />
-            Listing
-          </Link>
-        </div>
-      )
+      className: 'w-20 text-right',
+      render: product => <ProviderProductRowActions product={product} />
     }
   ]
 }

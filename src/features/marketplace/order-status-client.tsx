@@ -56,6 +56,7 @@ import {
   paymentTokenTransferMethod,
   x402Network
 } from '@/lib/config/chains'
+import { appOrderIdHeader } from '@/lib/config/headers'
 import { walletProvider } from '@/lib/config/wallet'
 import { cn } from '@/lib/utils/cn'
 import { thirdwebActiveChain, thirdwebClient } from '@/lib/wallet/thirdweb'
@@ -324,7 +325,7 @@ function OrderStatusContent({
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'X-App-Order-Id': order.id
+      [appOrderIdHeader]: order.id
     }
 
     try {
@@ -525,7 +526,7 @@ function OrderStatusContent({
               headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                'X-App-Order-Id': order.id
+                [appOrderIdHeader]: order.id
               },
               body: order.requestPayloadJson ?? '{}'
             }
@@ -781,12 +782,15 @@ function OrderStatusContent({
         }
       )
 
+      if (body.order) {
+        setOrder(body.order)
+        storeMarketplaceOrderSnapshot(body.order)
+      }
+
       if (!response.ok || !body.order) {
         throw new Error(body.error ?? 'Unable to refresh provider job status.')
       }
 
-      setOrder(body.order)
-      storeMarketplaceOrderSnapshot(body.order)
       setStatus(
         body.order.status === 'completed'
           ? 'Provider job completed. The API response is ready.'
@@ -1115,6 +1119,11 @@ function OrderStatusContent({
         <PaymentRequirementCard inspection={paymentRequirements} />
       ) : null}
       {paymentError ? <PaymentErrorCard message={paymentError} /> : null}
+      {order.latestProviderStatusPoll?.error ? (
+        <PaymentErrorCard
+          message={`Latest provider status poll failed: ${order.latestProviderStatusPoll.error}`}
+        />
+      ) : null}
 
       <ProviderResponsePanel
         order={order}
@@ -2183,7 +2192,7 @@ async function requestPaymentRequirement(order: MarketplaceOrder) {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'X-App-Order-Id': order.id
+      [appOrderIdHeader]: order.id
     },
     body: order.requestPayloadJson ?? '{}'
   })

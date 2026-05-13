@@ -29,6 +29,7 @@ import {
   getFeaturedProduct,
   getMarketplaceMetrics
 } from '@/features/marketplace/products'
+import { siteConfig } from '@/lib/config/site'
 
 type MarketingPageSearchParams = {
   auth?: string
@@ -126,7 +127,7 @@ export default async function MarketingPage({
       <section className='container-page relative isolate py-16 sm:py-20 lg:py-24'>
         <div className='pointer-events-none absolute inset-y-8 right-0 -z-10 hidden w-1/2 items-center justify-center lg:flex'>
           <Image
-            src='/images/tollkite-logo.png'
+            src={siteConfig.logoPath}
             alt=''
             width={520}
             height={520}
