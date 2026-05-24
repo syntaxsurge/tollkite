@@ -621,10 +621,7 @@ function OrderStatusContent({
           paymentRequired: nextPaymentRequired,
           response: body
         })
-        throw new Error(
-          body.error ??
-            `Wallet payment was not completed. Check ${paymentTokenSymbol} balance, network, and signature approval.`
-        )
+        throw new Error(buildPaidRequestError(response, body, paymentResult))
       }
 
       if (!response.ok) {
