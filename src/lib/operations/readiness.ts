@@ -31,7 +31,7 @@ export async function getOperationalReadiness() {
       value: x402Network,
       state:
         x402Network === `eip155:${defaultAppChain.id}` ? 'ready' : 'attention',
-      detail: 'Paid API routes settle USDT on the configured x402 network.'
+      detail: 'Paid API routes settle PYUSD on the configured x402 network.'
     },
     {
       label: 'x402 facilitator',
@@ -66,7 +66,7 @@ export async function getOperationalReadiness() {
       value: settlementReceipts.length.toString(),
       state: settlementReceipts.length > 0 ? 'ready' : 'attention',
       detail:
-        'Receipt pages show USDT amount, fee split, tx hash, and explorer.'
+        'Receipt pages show PYUSD amount, fee split, tx hash, and explorer.'
     },
     {
       label: 'Agent spender',
@@ -75,7 +75,7 @@ export async function getOperationalReadiness() {
         : 'Local execution only',
       state: envServer.AGENT_SPENDER_PRIVATE_KEY ? 'ready' : 'attention',
       detail:
-        'Server-side agent runs use this signer for autonomous x402 USDT payments.'
+        'Server-side agent runs use this signer for autonomous x402 PYUSD payments.'
     },
     {
       label: 'Agent budget vault',
@@ -86,7 +86,7 @@ export async function getOperationalReadiness() {
         ? 'ready'
         : 'attention',
       detail:
-        'Production agent runs require a user-funded USDT budget vault before spending.'
+        'Production agent runs require a user-funded PYUSD budget vault before spending.'
     },
     {
       label: 'Agent attestor',

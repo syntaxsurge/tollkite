@@ -71,14 +71,14 @@ export const defaultAppChain = appChains.app
 export const x402Network =
   envClient.NEXT_PUBLIC_X402_NETWORK ?? `eip155:${defaultAppChain.id}`
 export const defaultX402FacilitatorUrl = 'https://facilitator.pieverse.io'
-const defaultPaymentTokenAddress = '0x0fF5393387ad2f9f691FD6Fd28e07E3969e27e63'
-const defaultPaymentTokenDomainName = 'Test USD'
+const defaultPaymentTokenAddress = '0x8E04D099b1a8Dd20E6caD4b2Ab2B405B98242ec9'
+const defaultPaymentTokenDomainName = 'PYUSD'
 export const paymentTokenAddress =
   envClient.NEXT_PUBLIC_PAYMENT_TOKEN_ADDRESS ?? defaultPaymentTokenAddress
 export const paymentTokenName =
   envClient.NEXT_PUBLIC_PAYMENT_TOKEN_NAME ?? defaultPaymentTokenDomainName
 export const paymentTokenSymbol =
-  envClient.NEXT_PUBLIC_PAYMENT_TOKEN_SYMBOL ?? 'USDT'
+  envClient.NEXT_PUBLIC_PAYMENT_TOKEN_SYMBOL ?? 'PYUSD'
 export const paymentTokenLabel =
   envClient.NEXT_PUBLIC_PAYMENT_TOKEN_LABEL ?? paymentTokenSymbol
 export const paymentTokenVersion =

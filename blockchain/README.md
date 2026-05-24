@@ -12,7 +12,7 @@ providing deployment shortcuts.
 - `blockchain/contracts/ApiPaymentEscrow.sol` - escrow for prepaid
   credit-metered API calls that must be released or refunded after provider
   completion.
-- `blockchain/contracts/AgentRunVault.sol` - user-funded USDT budget vault for
+- `blockchain/contracts/AgentRunVault.sol` - user-funded PYUSD budget vault for
   autonomous agent runs.
 - `blockchain/hardhat.config.ts` - Hardhat configuration for the configured
   EVM deployment target.

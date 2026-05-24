@@ -59,7 +59,7 @@ const audiencePaths = [
 
 const agentFlow = [
   { icon: Sparkles, title: 'Plan', detail: 'AI picks tools' },
-  { icon: WalletCards, title: 'Pay', detail: 'Budgeted USDT' },
+  { icon: WalletCards, title: 'Pay', detail: 'Budgeted PYUSD' },
   { icon: DatabaseZap, title: 'Work', detail: 'Provider APIs run' },
   { icon: FileCheck2, title: 'Prove', detail: 'Receipts + hash' }
 ]
@@ -174,7 +174,7 @@ export default async function MarketingPage({
           {[
             { label: 'Agent-ready APIs', value: metrics.productCount },
             { label: 'Provider share', value: metrics.providerShareRangeLabel },
-            { label: 'Settlement rail', value: 'USDT' }
+            { label: 'Settlement rail', value: 'PYUSD' }
           ].map(item => (
             <div
               key={item.label}

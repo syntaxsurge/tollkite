@@ -55,14 +55,14 @@ export default async function ProofPage({ params }: ProofPageProps) {
             ['Run ID', proof.runId],
             ['Owner wallet', proof.ownerWallet],
             ['Proof hash', proof.proofHash],
-            ['Total spend', `${proof.totalSpendUsdt} USDT`],
+            ['Total spend', `${proof.totalSpendUsdt} PYUSD`],
             ['Funded budget', run?.fundedAmountUsdt ?? 'Not available'],
             ['Refunded budget', run?.refundedAmountUsdt ?? 'Not available'],
             [
               'Receipts',
               proof.receiptIds.length > 0
                 ? proof.receiptIds.join(', ')
-                : 'No USDT receipt records attached'
+                : 'No PYUSD receipt records attached'
             ]
           ].map(([label, value]) => (
             <div key={label}>

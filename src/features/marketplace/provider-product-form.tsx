@@ -287,13 +287,13 @@ export function ProviderProductForm() {
           <div>
             <SectionHeader
               eyebrow='Pricing'
-              title='Fixed or usage-based USDT'
+              title='Fixed or usage-based PYUSD'
               docId='section-pricing'
             />
             <p className='text-foreground/65 mt-2 max-w-3xl text-sm leading-6'>
               Use fixed pricing for simple APIs. Use credit-metered pricing for
               variable-cost APIs where a quote or job response returns a numeric
-              usage value that the gateway converts into USDT before x402
+              usage value that the gateway converts into PYUSD before x402
               payment.
             </p>
           </div>
@@ -309,7 +309,7 @@ export function ProviderProductForm() {
             value={pricingModel}
             onChange={value => setPricingModel(value as ApiProductPricingModel)}
             error={fieldErrors.pricingModel}
-            help='Fixed charges one USDT amount per call. Credit-metered reads a credit value and converts it into USDT.'
+            help='Fixed charges one PYUSD amount per call. Credit-metered reads a credit value and converts it into PYUSD.'
           >
             {apiProductPricingModels.map(model => (
               <option key={model} value={model}>
@@ -318,7 +318,7 @@ export function ProviderProductForm() {
             ))}
           </SelectField>
           <Field
-            label={isCreditMetered ? 'Fallback price in USDT' : 'Price in USDT'}
+            label={isCreditMetered ? 'Fallback price in PYUSD' : 'Price in PYUSD'}
             name='priceUsd'
             type='number'
             step='0.000001'
@@ -363,14 +363,14 @@ export function ProviderProductForm() {
             help='Optional dot-path for the provider response field that reports final credits used for receipts and audit metadata.'
           />
           <Field
-            label='USDT per credit'
+            label='PYUSD per credit'
             name='pricingCreditToUsdtRate'
             type='number'
             step='0.000001'
             defaultValue='0.01'
             required={isCreditMetered}
             error={fieldErrors.pricingCreditToUsdtRate}
-            help='Conversion rate used to turn provider credits into USDT. Example: 0.01 means 100 credits equals 1 USDT.'
+            help='Conversion rate used to turn provider credits into PYUSD. Example: 0.01 means 100 credits equals 1 PYUSD.'
           />
           <Field
             label='Pricing multiplier'
@@ -380,10 +380,10 @@ export function ProviderProductForm() {
             defaultValue='1'
             required={isCreditMetered}
             error={fieldErrors.pricingMultiplier}
-            help='Optional markup or discount multiplier applied after converting credits into USDT.'
+            help='Optional markup or discount multiplier applied after converting credits into PYUSD.'
           />
           <Field
-            label='Minimum charge USDT'
+            label='Minimum charge PYUSD'
             name='pricingMinimumChargeUsd'
             type='number'
             step='0.000001'
@@ -393,7 +393,7 @@ export function ProviderProductForm() {
             help='Optional floor so tiny usage still covers gateway and provider overhead.'
           />
           <Field
-            label='Maximum charge USDT'
+            label='Maximum charge PYUSD'
             name='pricingMaximumChargeUsd'
             type='number'
             step='0.000001'

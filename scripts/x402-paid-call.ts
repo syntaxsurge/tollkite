@@ -94,7 +94,7 @@ async function ensurePaymentTokenReady(amountUsd: number) {
 
   if (balance < requiredAmount) {
     throw new Error(
-      `Signer has insufficient USDT. Required ${formatUsdtAmount(
+      `Signer has insufficient PYUSD. Required ${formatUsdtAmount(
         requiredAmount
       )}, available ${formatUsdtAmount(balance)}.`
     )
@@ -115,7 +115,7 @@ async function ensurePaymentTokenReady(amountUsd: number) {
     return
   }
 
-  console.log('Submitting USDT Permit2 approval for this signer...')
+  console.log('Submitting PYUSD Permit2 approval for this signer...')
 
   const walletClient = createWalletClient({
     account,
@@ -132,7 +132,7 @@ async function ensurePaymentTokenReady(amountUsd: number) {
   const receipt = await publicClient.waitForTransactionReceipt({ hash: txHash })
 
   if (receipt.status !== 'success') {
-    throw new Error(`USDT Permit2 approval failed: ${txHash}`)
+    throw new Error(`PYUSD Permit2 approval failed: ${txHash}`)
   }
 
   await waitForPermit2Allowance({
@@ -167,7 +167,7 @@ async function waitForPermit2Allowance({
   }
 
   throw new Error(
-    'USDT Permit2 approval was submitted, but the updated allowance is not readable yet. Retry the paid call in a moment.'
+    'PYUSD Permit2 approval was submitted, but the updated allowance is not readable yet. Retry the paid call in a moment.'
   )
 }
 
@@ -177,7 +177,7 @@ function formatUsdtAmount(amount: bigint) {
     {
       maximumFractionDigits: 6
     }
-  )} USDT`
+  )} PYUSD`
 }
 
 async function main() {

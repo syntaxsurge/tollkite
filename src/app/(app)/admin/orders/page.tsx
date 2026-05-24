@@ -96,7 +96,7 @@ export default async function AdminOrdersPage({
           },
           {
             label: 'Quoted volume',
-            value: `${volume.toFixed(2)} USDT`,
+            value: `${volume.toFixed(2)} PYUSD`,
             detail: 'Order amounts',
             icon: CircleDollarSign
           },

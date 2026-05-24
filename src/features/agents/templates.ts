@@ -31,9 +31,9 @@ export const agentTemplates: AgentTemplate[] = [
     category: 'Go-to-market',
     summary:
       'Researches developer signals, writes launch copy, and prepares an auditable proof package.',
-    objective: 'Create a launch pack for my USDT-native paid API product.',
+    objective: 'Create a launch pack for my PYUSD-native paid API product.',
     sourceText:
-      'The product sells premium API responses to AI agents and records USDT receipts on-chain.',
+      'The product sells premium API responses to AI agents and records PYUSD receipts on-chain.',
     recommendedBudgetUsdt: 0.9,
     maxPaidActions: 4,
     toolStrategy:

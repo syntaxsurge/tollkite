@@ -23,7 +23,7 @@ export default async function ReceiptDetailPage({
   return (
     <div className='space-y-8'>
       <section className='bg-panel-sheen border-foreground/10 rounded-lg border p-6'>
-        <Badge>USDT receipt</Badge>
+        <Badge>PYUSD receipt</Badge>
         <div className='mt-4 flex flex-col justify-between gap-5 lg:flex-row lg:items-end'>
           <div className='max-w-3xl space-y-3'>
             <h1 className='font-display text-4xl'>Settlement receipt</h1>

@@ -35,7 +35,7 @@ export default async function NewOrderPage({
               {product.name}
             </h1>
             <p className='text-foreground/70 max-w-2xl text-sm leading-6'>
-              Create a payable request record for this API. No USDT is charged
+              Create a payable request record for this API. No PYUSD is charged
               on this page; the paid response is returned after an x402 buyer
               client, backend, CLI, or agent signs and settles the payment.
             </p>

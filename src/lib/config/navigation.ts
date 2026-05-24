@@ -20,7 +20,7 @@ export const appNav = [
   {
     label: 'Marketplace',
     href: '/marketplace',
-    description: 'Discover USDT-paid APIs and agent-ready tools'
+    description: 'Discover PYUSD-paid APIs and agent-ready tools'
   },
   {
     label: 'Provider',
@@ -40,7 +40,7 @@ export const appNav = [
   {
     label: 'Billing',
     href: '/billing',
-    description: 'USDT receipts, usage, and platform fees'
+    description: 'PYUSD receipts, usage, and platform fees'
   },
   {
     label: 'Settings',
@@ -78,7 +78,7 @@ export const adminNav = [
   {
     label: 'Receipts',
     href: '/admin/receipts',
-    description: 'Audit USDT receipts and payout splits'
+    description: 'Audit PYUSD receipts and payout splits'
   },
   {
     label: 'Subscriptions',

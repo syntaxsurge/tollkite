@@ -91,7 +91,7 @@ export default async function MarketplacePage({
             {[
               ['APIs', metrics.productCount.toString()],
               ['Calls', metrics.totalCalls.toLocaleString()],
-              ['USDT', metrics.totalRevenueUsdt]
+              ['PYUSD', metrics.totalRevenueUsdt]
             ].map(([label, value]) => (
               <div
                 key={label}

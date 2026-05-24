@@ -1,6 +1,6 @@
 Project: Tollkite  
 One-liner: A Kite native marketplace where API owners list paid tools, buyers
-pay with USDT through x402, and autonomous OpenAI agents buy those tools with
+pay with PYUSD through x402, and autonomous OpenAI agents buy those tools with
 receipts and on chain proof.
 
 ## 1. Show The Marketplace Value
@@ -94,7 +94,7 @@ receipts and on chain proof.
      - Auth secret or API key = [CLIPLORE_API_KEY=clip_live_your_key]
      - Pricing model = Credit metered
      - Credit value path = estimatedCredits
-     - USDT per credit = 0.01
+     - PYUSD per credit = 0.01
      - Visibility = Published
   9. **Current page:** /provider/products/new - click "Save API product" - wait
      for the product saved confirmation.
@@ -173,7 +173,7 @@ receipts and on chain proof.
 - **Voiceover:**
   > "This is the buyer experience. Tollkite builds the request form from the
   > provider schema, I use a sample payload, and I pay with my wallet. The buyer
-  > pays before ClipLore starts expensive work. Tollkite settles USDT through
+  > pays before ClipLore starts expensive work. Tollkite settles PYUSD through
   > x402, creates a receipt, starts the provider job, polls the async status,
   > and returns a public project handoff link when the generated video project
   > is ready."
@@ -213,7 +213,7 @@ receipts and on chain proof.
 
 - **URL:** /receipts/[receiptId]
 - **Shot:** Tollkite receipt page with receipt ID, buyer wallet, provider wallet,
-  product, USDT amount, platform fee, provider amount, network, and Kite
+  product, PYUSD amount, platform fee, provider amount, network, and Kite
   explorer link.
 - **Steps:**
   1. **Current page:** https://cliplore.ai/share/api-projects/[jobId] or
@@ -224,11 +224,11 @@ receipts and on chain proof.
   4. **Current page:** /receipts/[receiptId] - click the Kite transaction link.
   5. **Current page:** Kite explorer - confirm the transaction page opens.
   6. **Current page:** /receipts/[receiptId] - return to the receipt page.
-  7. **Verify on-screen:** The receipt shows buyer wallet, provider wallet, USDT
+  7. **Verify on-screen:** The receipt shows buyer wallet, provider wallet, PYUSD
      amount, fee split, product, and transaction hash.
 - **Voiceover:**
   > "After the result, we verify the business side. The receipt shows the buyer
-  > wallet, provider wallet, USDT amount, platform fee, provider share, and Kite
+  > wallet, provider wallet, PYUSD amount, platform fee, provider share, and Kite
   > transaction. This proves the API seller can earn from each paid call while
   > the buyer gets a real result and a verifiable payment record."
 
@@ -251,7 +251,7 @@ receipts and on chain proof.
        checkout, provider earnings, ClipLore video output, and autonomous agent
        proof.
      - Source context = Tollkite is a Kite native marketplace for APIs, x402
-       payments, USDT settlement, provider revenue, browser checkout, developer
+       payments, PYUSD settlement, provider revenue, browser checkout, developer
        integration, and OpenAI powered agent runs.
      - Budget = 0.90
      - Actions = 4
@@ -260,11 +260,11 @@ receipts and on chain proof.
   8. **Current page:** /agents/[runId] - click "Fund agent" - confirm the wallet
      funding transaction.
   9. **Verify on-screen:** The funding ledger shows "User funded this autonomous
-     agent run" and the funded budget card shows 0.90 USDT.
+     agent run" and the funded budget card shows 0.90 PYUSD.
 - **Voiceover:**
   > "Now I show why this is more than a normal API marketplace. I create an
   > autonomous run, let OpenAI choose from the paid tool catalog, set a 0.90
-  > USDT budget, and fund the agent vault. The agent cannot spend until the user
+  > PYUSD budget, and fund the agent vault. The agent cannot spend until the user
   > funds it, and it cannot exceed the budget. This is useful for teams,
   > developers, and users who want real work completed without approving every
   > single API call."
@@ -309,7 +309,7 @@ receipts and on chain proof.
   1. **Current page:** /proofs/[proofId] - confirm the public proof summary is
      visible.
   2. **Verify final state:** Tollkite showed a provider listing a real ClipLore
-     API, a different buyer paying with USDT through x402, a real generated
+     API, a different buyer paying with PYUSD through x402, a real generated
      project handoff, provider earnings, autonomous OpenAI tool execution,
      receipts, and Kite proof.
 - **Voiceover:**

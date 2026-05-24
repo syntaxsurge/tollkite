@@ -278,7 +278,7 @@ function AgentRunContent({
       let approvalTxHash: Hex | undefined
 
       if (tokenState.allowance < requiredAmount) {
-        setStatus('Open MetaMask and approve USDT for the agent run vault.')
+        setStatus('Open MetaMask and approve PYUSD for the agent run vault.')
         approvalTxHash = await sendBrowserWalletTransaction({
           from: fundingWallet,
           to: prepared.funding.tokenAddress,
@@ -294,7 +294,7 @@ function AgentRunContent({
 
         await waitForSuccessfulTransaction(
           approvalTxHash,
-          'USDT approval transaction reverted.'
+          'PYUSD approval transaction reverted.'
         )
 
         const nextAllowance = await readFundingTokenAllowance({
@@ -499,11 +499,11 @@ function AgentRunContent({
     ['funded', 'partially_spent', 'refund_available'].includes(
       run.fundingStatus
     ) &&
-    run.availableAmountUsdt !== '0.00 USDT'
+    run.availableAmountUsdt !== '0.00 PYUSD'
   const canRefund =
     ['failed', 'completed', 'attested'].includes(run.status) &&
     run.fundingStatus === 'refund_available' &&
-    run.availableAmountUsdt !== '0.00 USDT'
+    run.availableAmountUsdt !== '0.00 PYUSD'
   const finalOutputs = collectFinalOutputs(run)
   const runControlStatus = getVisibleRunControlStatus(run, status)
 
@@ -648,7 +648,7 @@ async function readFundingTokenState({
         abi: erc20ApprovalAbi,
         functionName: 'symbol'
       })
-      .catch(() => 'USDT')
+      .catch(() => 'PYUSD')
   ])
 
   return {
@@ -924,7 +924,7 @@ function RunControlPanel({
                 run.fundingStatus
               ) ||
               (run.fundingStatus === 'refund_available' &&
-                run.availableAmountUsdt !== '0.00 USDT')
+                run.availableAmountUsdt !== '0.00 PYUSD')
             }
           >
             <WalletCards className='h-4 w-4' aria-hidden />
@@ -1784,7 +1784,7 @@ function buildActionErrorNotice(
     return {
       title: 'Agent budget is not enough for this tool call',
       message: `The vault rejected the ${action.amountUsdt} spend for ${action.productName} because the funded run budget does not cover this action.`,
-      detail: `Funded: ${run.fundedAmountUsdt}. Spent: ${run.spentAmountUsdt}. Available: ${run.availableAmountUsdt}. Create or fund a run with enough USDT for this tool, then retry the action.`,
+      detail: `Funded: ${run.fundedAmountUsdt}. Spent: ${run.spentAmountUsdt}. Available: ${run.availableAmountUsdt}. Create or fund a run with enough PYUSD for this tool, then retry the action.`,
       raw
     }
   }
@@ -1812,10 +1812,10 @@ function buildActionErrorNotice(
     lower.includes('signerusdtreturn')
   ) {
     return {
-      title: 'Agent signer needs USDT, not wallet gas',
+      title: 'Agent signer needs PYUSD, not wallet gas',
       message:
-        'The vault advanced this tool budget to the backend agent signer, but the signer did not have enough USDT available for settlement or refund recovery.',
-      detail: `This is separate from your connected wallet's ${defaultAppChain.nativeCurrency.symbol} balance. Check AGENT_SPENDER_PRIVATE_KEY, the signer USDT balance, Permit2 allowance, and whether another failed or concurrent run consumed the signer funds before retrying.`,
+        'The vault advanced this tool budget to the backend agent signer, but the signer did not have enough PYUSD available for settlement or refund recovery.',
+      detail: `This is separate from your connected wallet's ${defaultAppChain.nativeCurrency.symbol} balance. Check AGENT_SPENDER_PRIVATE_KEY, the signer PYUSD balance, Permit2 allowance, and whether another failed or concurrent run consumed the signer funds before retrying.`,
       raw
     }
   }

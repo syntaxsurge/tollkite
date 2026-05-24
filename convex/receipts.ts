@@ -76,7 +76,7 @@ export const upsertSnapshot = mutation({
       orderId: order?._id,
       buyerWallet: String(receipt.buyerWallet ?? ''),
       providerWallet: String(receipt.providerWallet ?? ''),
-      amountUsdt: String(receipt.amountUsdt ?? '0.00 USDT'),
+      amountUsdt: String(receipt.amountUsdt ?? '0.00 PYUSD'),
       network: 'eip155:2368' as const,
       txHash: receipt.txHash,
       settlementPayloadJson: args.receiptJson,

@@ -135,7 +135,7 @@ export default async function AgentsPage({ searchParams }: AgentsPageProps) {
             <MetricTile
               icon={CircleDollarSign}
               label='Spend'
-              value={`${metrics.totalSpendUsdt} USDT`}
+              value={`${metrics.totalSpendUsdt} PYUSD`}
             />
           </div>
         </div>
@@ -265,7 +265,7 @@ const templateColumns: ServerDataTableColumn<AgentTemplate>[] = [
     render: template => (
       <div>
         <p className='font-semibold'>
-          {template.recommendedBudgetUsdt.toFixed(2)} USDT
+          {template.recommendedBudgetUsdt.toFixed(2)} PYUSD
         </p>
         <p className='text-muted-foreground mt-1 text-xs'>
           {template.maxPaidActions} max actions

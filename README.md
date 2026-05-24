@@ -1,6 +1,6 @@
 # Tollkite
 
-USDT-native API commerce for humans, applications, and AI agents on configurable
+PYUSD-native API commerce for humans, applications, and AI agents on configurable
 EVM rails.
 
 Tollkite is a paid API marketplace and gateway. Providers list paid endpoints,
@@ -13,7 +13,7 @@ usage records, and provider dashboards.
 - Next.js 15 + React 19 App Router setup.
 - Configurable EVM chain metadata with native gas and RainbowKit wallet support.
 - RainbowKit-compatible wallet onboarding.
-- Marketplace catalog with USDT prices, provider badges, x402 flags, and
+- Marketplace catalog with PYUSD prices, provider badges, x402 flags, and
   agent-ready API details.
 - Autonomous Launch Pack Agent runs with an OpenAI planner and synthesizer that
   choose paid tools, buy selected APIs, return deliverables, and publish
@@ -24,9 +24,9 @@ usage records, and provider dashboards.
 - Provider product management for listing APIs, validating schemas, reviewing
   product status, copying gateway endpoints, and testing paid request setup.
 - Buyer order lifecycle pages for payment-required, processing, completed,
-  failed, and expired API requests, with browser wallet x402 checkout, USDT
+  failed, and expired API requests, with browser wallet x402 checkout, PYUSD
   settlement, provider results, and receipt links.
-- Managed credits for teams that prefer API-key usage after recording USDT
+- Managed credits for teams that prefer API-key usage after recording PYUSD
   top-ups.
 - x402-protected product call route for settlement through the configured
   facilitator.
@@ -39,7 +39,7 @@ usage records, and provider dashboards.
   uploaded files.
 - OpenAPI JSON and Scalar API reference for gateway, receipt, provider, and
   agent routes.
-- Receipt pages with USDT amount, fee split, payer, provider wallet, transaction
+- Receipt pages with PYUSD amount, fee split, payer, provider wallet, transaction
   hash, and explorer links.
 - Admin moderation pages for API products and buyer request operations.
 - Convex schema for providers, API products, versions, orders, receipts,
@@ -69,7 +69,7 @@ commands use the configured `NEXT_PUBLIC_CONVEX_URL`.
 
 ## EVM Chain
 
-Tollkite defaults to Kite Testnet for USDT-paid API commerce. To migrate to
+Tollkite defaults to Kite Testnet for PYUSD-paid API commerce. To migrate to
 another EVM network, update the `NEXT_PUBLIC_EVM_*`,
 `NEXT_PUBLIC_PAYMENT_TOKEN_*`, `NEXT_PUBLIC_X402_NETWORK`, and
 `X402_FACILITATOR_*` values, then redeploy the contracts on that target chain.
@@ -91,7 +91,7 @@ another EVM network, update the `NEXT_PUBLIC_EVM_*`,
 ## Paid API Calls
 
 Raw `curl` requests intentionally return `402 Payment Required` because the
-server is advertising the USDT payment requirements. External developers do not
+server is advertising the PYUSD payment requirements. External developers do not
 need to clone this repository to use Tollkite APIs; they install the x402 buyer
 SDK in their own backend, CLI, or agent and call the hosted Tollkite product
 endpoint.
@@ -108,7 +108,7 @@ The command uses `@x402/fetch` to sign the payment, retry the request, and print
 the settled response.
 
 Humans can also open a marketplace product, create a payable request, and click
-`Run with wallet` to approve USDT payment authorization when needed, sign the x402
+`Run with wallet` to approve PYUSD payment authorization when needed, sign the x402
 payment from the connected browser wallet, and receive the provider response.
 Teams that want API-key ergonomics can use `/billing` to create a managed credit
 account and call `/api/credits/products/{slug}/call` with a Tollkite API key.
@@ -209,7 +209,7 @@ Key values:
    `NEXT_PUBLIC_APP_URL` to the deployed app URL. The agent spender signs
    payments and only needs native gas for payment or refund-return transactions.
    Use `NEXT_PUBLIC_PAYMENT_TOKEN_SYMBOL` and `NEXT_PUBLIC_PAYMENT_TOKEN_LABEL`
-   to change UI copy for USDT or another settlement token. Tollkite's Kite
+   to change UI copy for PYUSD or another settlement token. Tollkite's Kite
    configuration uses `NEXT_PUBLIC_PAYMENT_TOKEN_TRANSFER_METHOD=eip3009` for
    `transferWithAuthorization` payment signatures.
 

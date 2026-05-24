@@ -253,7 +253,7 @@ export function parsePaymentAmountToAtomic(amount: number | string) {
 }
 
 export function formatAtomicPaymentAmount(amount: bigint) {
-  return `${Number(formatUnits(amount, paymentTokenDecimals)).toFixed(2)} USDT`
+  return `${Number(formatUnits(amount, paymentTokenDecimals)).toFixed(2)} PYUSD`
 }
 
 export function getPaymentTokenAddress() {

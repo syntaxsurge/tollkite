@@ -27,9 +27,9 @@ Use this checklist before operating the app.
 - `NEXT_PUBLIC_AGENT_RUN_VAULT_ADDRESS`
 - `AGENT_RUN_VAULT_OPERATOR_PRIVATE_KEY`
 - `NEXT_PUBLIC_PAYMENT_TOKEN_ADDRESS`
-- `NEXT_PUBLIC_PAYMENT_TOKEN_NAME=Test USD`
-- `NEXT_PUBLIC_PAYMENT_TOKEN_SYMBOL=USDT`
-- `NEXT_PUBLIC_PAYMENT_TOKEN_LABEL=USDT`
+- `NEXT_PUBLIC_PAYMENT_TOKEN_NAME=PYUSD`
+- `NEXT_PUBLIC_PAYMENT_TOKEN_SYMBOL=PYUSD`
+- `NEXT_PUBLIC_PAYMENT_TOKEN_LABEL=PYUSD`
 - `NEXT_PUBLIC_PAYMENT_TOKEN_VERSION=1`
 - `NEXT_PUBLIC_PAYMENT_TOKEN_DECIMALS=18`
 - `NEXT_PUBLIC_PAYMENT_TOKEN_TRANSFER_METHOD=eip3009`
@@ -62,7 +62,7 @@ pnpm build
   when it is not, requires funded production runs before spending, and completes
   paid actions when the agent spender is configured.
 - `POST /api/agents/runs/[runId]/funding/prepare` and
-  `POST /api/agents/runs/[runId]/funding/confirm` prepare and record the USDT
+  `POST /api/agents/runs/[runId]/funding/confirm` prepare and record the PYUSD
   vault deposit for production agent runs.
 - `GET /api/agents/runs/[runId]/ledger` shows funding, spend, and refund events
   for a run.
@@ -92,11 +92,11 @@ pnpm build
 - `/marketplace` shows published API products.
 - `/agents` and `/agents/new` show the autonomous agent lifecycle.
 - `/proofs/[proofId]` renders without wallet auth.
-- `/provider` shows only the connected wallet's owned listings, USDT revenue,
+- `/provider` shows only the connected wallet's owned listings, PYUSD revenue,
   recent request activity, agent-created calls, and fee split.
 - `/admin/products`, `/admin/orders`, `/admin/agents`, and `/admin/receipts`
   show global server-side tables for ownership, usage, autonomous runs, and
   settlement reconciliation.
-- `/billing` shows USDT receipts, managed credit balance, API key creation, and
+- `/billing` shows PYUSD receipts, managed credit balance, API key creation, and
   top-up/debit history.
 - `/admin/operations` shows payment, adapter, wallet, and receipt readiness.

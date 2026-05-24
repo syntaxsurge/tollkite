@@ -188,11 +188,11 @@ export async function createAgentRun(input: CreateAgentRunInput) {
     vaultPaymentId: getAgentRunBytes32(runId),
     vaultAddress,
     vaultExplorerUrl: getAgentRunVaultExplorerUrl(),
-    fundedAmountUsdt: '0.00 USDT',
-    spentAmountUsdt: '0.00 USDT',
-    reservedAmountUsdt: '0.00 USDT',
-    refundedAmountUsdt: '0.00 USDT',
-    availableAmountUsdt: '0.00 USDT',
+    fundedAmountUsdt: '0.00 PYUSD',
+    spentAmountUsdt: '0.00 PYUSD',
+    reservedAmountUsdt: '0.00 PYUSD',
+    refundedAmountUsdt: '0.00 PYUSD',
+    availableAmountUsdt: '0.00 PYUSD',
     ledgerEvents: [],
     summary:
       'The launch-pack agent is ready to select paid tools, spend within budget, and prepare a on-chain proof.',
@@ -222,7 +222,7 @@ export async function deleteAgentRun(runId: string) {
     ['funded', 'partially_spent', 'refund_available'].includes(
       run.fundingStatus
     ) &&
-    run.availableAmountUsdt !== '0.00 USDT'
+    run.availableAmountUsdt !== '0.00 PYUSD'
   ) {
     await writeAgentRunVault({
       functionName: 'cancelRun',
@@ -267,7 +267,7 @@ export async function executeStoredAgentRun(runId: string, appUrl?: string) {
   ) {
     return {
       ...run,
-      summary: 'Fund this agent run before it can spend USDT through x402.',
+      summary: 'Fund this agent run before it can spend PYUSD through x402.',
       updatedAt: new Date().toISOString()
     } satisfies AgentRun
   }
@@ -355,7 +355,7 @@ export async function executeStoredAgentRun(runId: string, appUrl?: string) {
     deliverables: result.deliverables,
     summary: result.summary,
     fundingStatus:
-      ledgerResult.availableAmountUsdt === '0.00 USDT'
+      ledgerResult.availableAmountUsdt === '0.00 PYUSD'
         ? 'partially_spent'
         : 'refund_available',
     spentAmountUsdt: ledgerResult.spentAmountUsdt,
@@ -420,7 +420,7 @@ export async function prepareAgentRunFunding(runId: string) {
       buildLedgerEvent({
         type: 'funding_prepared',
         label: 'Funding request prepared for the agent run vault.',
-        amountUsdt: `${run.budgetCapUsdt.toFixed(2)} USDT`
+        amountUsdt: `${run.budgetCapUsdt.toFixed(2)} PYUSD`
       })
     ],
     updatedAt: new Date().toISOString()
@@ -436,7 +436,7 @@ export async function prepareAgentRunFunding(runId: string) {
       vaultAddress,
       tokenAddress: getPaymentTokenAddress(),
       amount: parsePaymentAmountToAtomic(run.budgetCapUsdt).toString(),
-      amountUsdt: `${run.budgetCapUsdt.toFixed(2)} USDT`,
+      amountUsdt: `${run.budgetCapUsdt.toFixed(2)} PYUSD`,
       agentSigner,
       expiresAt
     }
@@ -467,7 +467,7 @@ export async function confirmAgentRunFunding({
     )
   }
 
-  const amountUsdt = `${run.budgetCapUsdt.toFixed(2)} USDT`
+  const amountUsdt = `${run.budgetCapUsdt.toFixed(2)} PYUSD`
   const nextRun = {
     ...run,
     fundingStatus: 'funded',
@@ -525,7 +525,7 @@ export async function refundAgentRunUnusedBudget({
     ...run,
     fundingStatus: 'refunded',
     refundedAmountUsdt: addUsdt(run.refundedAmountUsdt, available),
-    availableAmountUsdt: '0.00 USDT',
+    availableAmountUsdt: '0.00 PYUSD',
     refundTxHash: tx,
     refundExplorerUrl: buildExplorerUrl(tx),
     ledgerEvents: [
@@ -626,7 +626,7 @@ function calculateTotalSpend(run: AgentRun) {
         return sum
       }
 
-      return sum + Number(action.amountUsdt.replace(' USDT', ''))
+      return sum + Number(action.amountUsdt.replace(' PYUSD', ''))
     }, 0)
     .toFixed(2)
 }
@@ -656,11 +656,11 @@ function resetRunFundingState(run: AgentRun, summary: string) {
     ...run,
     status: 'planned',
     fundingStatus: 'unfunded',
-    fundedAmountUsdt: '0.00 USDT',
-    spentAmountUsdt: '0.00 USDT',
-    reservedAmountUsdt: '0.00 USDT',
-    refundedAmountUsdt: '0.00 USDT',
-    availableAmountUsdt: '0.00 USDT',
+    fundedAmountUsdt: '0.00 PYUSD',
+    spentAmountUsdt: '0.00 PYUSD',
+    reservedAmountUsdt: '0.00 PYUSD',
+    refundedAmountUsdt: '0.00 PYUSD',
+    availableAmountUsdt: '0.00 PYUSD',
     fundingTxHash: undefined,
     fundingExplorerUrl: undefined,
     approvalTxHash: undefined,
@@ -704,7 +704,7 @@ async function buildSpendLedger(run: AgentRun, actions: AgentRun['actions']) {
       buildLedgerEvent({
         type: 'spend_recorded',
         label: `Agent advanced vault budget to pay ${action.productName}.`,
-        amountUsdt: `${advanced.toFixed(2)} USDT`,
+        amountUsdt: `${advanced.toFixed(2)} PYUSD`,
         txHash: action.vaultSpendTxHash ?? action.receipt?.txHash,
         explorerUrl:
           action.vaultSpendExplorerUrl ?? action.receipt?.explorerUrl,
@@ -717,7 +717,7 @@ async function buildSpendLedger(run: AgentRun, actions: AgentRun['actions']) {
         buildLedgerEvent({
           type: 'spend_refunded',
           label: `Unused agent signer funds were returned after ${action.productName}.`,
-          amountUsdt: `${refunded.toFixed(2)} USDT`,
+          amountUsdt: `${refunded.toFixed(2)} PYUSD`,
           txHash: action.vaultRefundTxHash ?? action.vaultReturnTxHash,
           explorerUrl:
             action.vaultRefundExplorerUrl ?? action.vaultReturnExplorerUrl,
@@ -731,16 +731,16 @@ async function buildSpendLedger(run: AgentRun, actions: AgentRun['actions']) {
   const available = Math.max(0, funded - spent)
 
   return {
-    spentAmountUsdt: `${spent.toFixed(2)} USDT`,
-    reservedAmountUsdt: '0.00 USDT',
-    availableAmountUsdt: `${available.toFixed(2)} USDT`,
+    spentAmountUsdt: `${spent.toFixed(2)} PYUSD`,
+    reservedAmountUsdt: '0.00 PYUSD',
+    availableAmountUsdt: `${available.toFixed(2)} PYUSD`,
     ledgerEvents: [
       ...run.ledgerEvents,
       ...newEvents,
       buildLedgerEvent({
         type: 'run_completed',
         label: 'Agent execution ended. Any remaining budget can be refunded.',
-        amountUsdt: `${available.toFixed(2)} USDT`
+        amountUsdt: `${available.toFixed(2)} PYUSD`
       })
     ]
   }
@@ -805,7 +805,7 @@ function parseUsdt(value: string | null | undefined) {
 }
 
 function addUsdt(first: string, second: string) {
-  return `${(parseUsdt(first) + parseUsdt(second)).toFixed(2)} USDT`
+  return `${(parseUsdt(first) + parseUsdt(second)).toFixed(2)} PYUSD`
 }
 
 function isAgentRun(value: unknown): value is AgentRun {

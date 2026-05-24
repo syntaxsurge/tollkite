@@ -129,7 +129,7 @@ function ManagedCreditsPanelContent({
       }
 
       setAccount(body.account)
-      setStatus('USDT top-up recorded for managed API-key usage.')
+      setStatus('PYUSD top-up recorded for managed API-key usage.')
       event.currentTarget.reset()
       router.refresh()
     } catch (caughtError) {
@@ -153,7 +153,7 @@ function ManagedCreditsPanelContent({
           <h2 className='font-display mt-2 text-2xl'>API-key path for teams</h2>
           <p className='text-foreground/65 mt-2 max-w-2xl text-sm leading-6'>
             x402 remains the native payment path. Managed credits let a team top
-            up USDT once, receive a managed-credit API key, and debit usage from
+            up PYUSD once, receive a managed-credit API key, and debit usage from
             the saved balance before provider work starts.
           </p>
         </div>
@@ -169,7 +169,7 @@ function ManagedCreditsPanelContent({
         />
         <Metric
           label='Credit balance'
-          value={`${account?.balanceUsdt ?? '0.00'} USDT`}
+          value={`${account?.balanceUsdt ?? '0.00'} PYUSD`}
         />
         <Metric
           label='Usage debits'
@@ -188,7 +188,7 @@ function ManagedCreditsPanelContent({
           step='0.01'
           placeholder='25.00'
           required
-          aria-label='Top-up amount in USDT'
+          aria-label='Top-up amount in PYUSD'
         />
         <Input
           name='settlementTxHash'

@@ -76,7 +76,7 @@ export default async function AdminReceiptsPage({
         <div className='mt-4 max-w-3xl space-y-3'>
           <h1 className='font-display text-4xl'>Receipts and payouts</h1>
           <p className='text-foreground/70 text-sm leading-6'>
-            Audit every recorded USDT receipt, provider share, platform fee,
+            Audit every recorded PYUSD receipt, provider share, platform fee,
             buyer wallet, payout wallet, and explorer transaction.
           </p>
         </div>
@@ -92,19 +92,19 @@ export default async function AdminReceiptsPage({
           },
           {
             label: 'Gross volume',
-            value: `${gross.toFixed(2)} USDT`,
+            value: `${gross.toFixed(2)} PYUSD`,
             detail: 'Total paid amount',
             icon: CircleDollarSign
           },
           {
             label: 'Provider share',
-            value: `${providerShare.toFixed(2)} USDT`,
+            value: `${providerShare.toFixed(2)} PYUSD`,
             detail: 'Released to providers',
             icon: Split
           },
           {
             label: 'Platform fees',
-            value: `${platformFees.toFixed(2)} USDT`,
+            value: `${platformFees.toFixed(2)} PYUSD`,
             detail: 'Platform fee share',
             icon: FileText
           }

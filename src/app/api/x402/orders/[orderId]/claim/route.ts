@@ -136,7 +136,7 @@ export async function POST(request: NextRequest, { params }: ClaimRouteProps) {
     providerName: product.providerName,
     buyerWallet: settlement.payer ?? order.buyerWallet,
     providerWallet: product.providerWallet,
-    amountUsdt: order.deltaAmountUsdt ?? '0.00 USDT',
+    amountUsdt: order.deltaAmountUsdt ?? '0.00 PYUSD',
     ...buildReceiptAmounts(deltaAmountUsd, feeSplit.platformFeeBps),
     providerPlan: feeSplit.planKey,
     platformFeeBps: feeSplit.platformFeeBps,
@@ -267,7 +267,7 @@ async function settleClaim({
       success: false as const,
       errorReason: 'settlement_exception',
       errorMessage:
-        error instanceof Error ? error.message : 'USDT settlement failed.',
+        error instanceof Error ? error.message : 'PYUSD settlement failed.',
       response: {
         status: 402,
         headers: {},
@@ -278,7 +278,7 @@ async function settleClaim({
   if (!settlement.success) {
     return NextResponse.json(
       {
-        error: 'USDT delta settlement failed.',
+        error: 'PYUSD delta settlement failed.',
         reason: settlement.errorReason,
         message: settlement.errorMessage,
         guidance: buildClaimSettlementGuidance(

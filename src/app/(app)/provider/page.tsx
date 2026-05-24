@@ -47,7 +47,7 @@ export default async function ProviderPage() {
           <div className='space-y-4'>
             <Badge>Provider dashboard</Badge>
             <h1 className='font-display text-4xl'>
-              Sell APIs with USDT settlement.
+              Sell APIs with PYUSD settlement.
             </h1>
             <p className='text-foreground/70 max-w-2xl text-sm leading-6'>
               Manage listings, usage, revenue, and gateway health.
@@ -85,7 +85,7 @@ export default async function ProviderPage() {
             </p>
             <p className='text-foreground/65 mt-2 text-sm leading-6'>
               {topProduct
-                ? `${topProduct.revenueUsdt} USDT recorded across ${topProduct.calls} calls.`
+                ? `${topProduct.revenueUsdt} PYUSD recorded across ${topProduct.calls} calls.`
                 : 'Publish a product to start earning.'}
             </p>
           </Card>
@@ -96,7 +96,7 @@ export default async function ProviderPage() {
         {[
           {
             label: 'Provider earnings',
-            value: `${providerMetrics.providerRevenueUsdt} USDT`,
+            value: `${providerMetrics.providerRevenueUsdt} PYUSD`,
             detail: 'Released provider payout share',
             icon: CircleDollarSign
           },
@@ -109,7 +109,7 @@ export default async function ProviderPage() {
           {
             label: 'Agent runs',
             value: agentMetrics.totalRuns.toString(),
-            detail: `${agentMetrics.totalSpendUsdt} USDT agent spend`,
+            detail: `${agentMetrics.totalSpendUsdt} PYUSD agent spend`,
             icon: Receipt
           },
           {
@@ -186,7 +186,7 @@ export default async function ProviderPage() {
                   <p className='text-foreground/60 text-xs uppercase'>
                     Earnings
                   </p>
-                  <p className='font-semibold'>{product.revenueUsdt} USDT</p>
+                  <p className='font-semibold'>{product.revenueUsdt} PYUSD</p>
                 </div>
                 <div>
                   <p className='text-foreground/60 text-xs uppercase'>
@@ -211,12 +211,12 @@ export default async function ProviderPage() {
           </div>
           <div className='grid gap-3'>
             {[
-              ['Gross volume', `${providerMetrics.grossVolumeUsdt} USDT`],
+              ['Gross volume', `${providerMetrics.grossVolumeUsdt} PYUSD`],
               [
                 'Provider earned',
-                `${providerMetrics.providerRevenueUsdt} USDT`
+                `${providerMetrics.providerRevenueUsdt} PYUSD`
               ],
-              ['Platform fees', `${providerMetrics.platformFeeUsdt} USDT`],
+              ['Platform fees', `${providerMetrics.platformFeeUsdt} PYUSD`],
               ['Current split', feeSplit.providerShareLabel]
             ].map(([label, value]) => (
               <div key={label} className='bg-muted rounded-lg p-4'>

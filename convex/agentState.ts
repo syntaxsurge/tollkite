@@ -152,7 +152,7 @@ export const upsertProof = mutation({
       txHash: String(proof.txHash ?? ''),
       explorerUrl: proof.explorerUrl ?? undefined,
       receiptIdsJson: JSON.stringify(proof.receiptIds ?? []),
-      totalSpendUsdt: String(proof.totalSpendUsdt ?? '0.00 USDT'),
+      totalSpendUsdt: String(proof.totalSpendUsdt ?? '0.00 PYUSD'),
       createdAt: parseDate(proof.createdAt) ?? now
     }
 

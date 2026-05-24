@@ -269,7 +269,7 @@ export function AgentRunCreateForm({
             <div className='grid gap-4 lg:grid-cols-[1fr_320px]'>
               <div className='border-border bg-primary/5 rounded-lg border p-4 text-sm leading-6'>
                 Agent runs are created first, then funded on the run page with a
-                USDT deposit into the agent budget vault before any paid action
+                PYUSD deposit into the agent budget vault before any paid action
                 can execute. Unused budget can be refunded to the owner.
               </div>
               <div className='space-y-2'>

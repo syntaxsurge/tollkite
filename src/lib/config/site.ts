@@ -7,7 +7,7 @@ export const siteConfig = {
   name: envClient.NEXT_PUBLIC_APP_NAME ?? 'Tollkite',
   description:
     envClient.NEXT_PUBLIC_APP_DESCRIPTION ??
-    'USDT-native API commerce for humans, applications, and AI agents on Kite.',
+    'PYUSD-native API commerce for humans, applications, and AI agents on Kite.',
   url: envClient.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
   links: {
     github: 'https://github.com/gokite-ai',

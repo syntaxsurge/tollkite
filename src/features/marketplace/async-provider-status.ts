@@ -363,7 +363,7 @@ export async function syncMarketplaceOrderProviderStatus(
         deltaAmountUsdt:
           usageDelta && usageDelta.deltaUsd !== 0
             ? usageDelta.deltaLabel
-            : '0.00 USDT',
+            : '0.00 PYUSD',
         resultReleaseStatus
       },
       escrow: {

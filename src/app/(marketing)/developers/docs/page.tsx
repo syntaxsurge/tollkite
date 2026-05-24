@@ -20,7 +20,7 @@ const providerDocsSections: DocsSection[] = [
     group: 'Start here',
     title: 'How How the gateway sells your API',
     body: `
-The gateway lets a provider list an existing HTTPS API as a paid marketplace product. Buyers, applications, CLIs, and autonomous agents call the hosted gateway endpoint. the gateway handles the x402 payment requirement, USDT settlement on Kite, provider request forwarding, receipts, and proof metadata.
+The gateway lets a provider list an existing HTTPS API as a paid marketplace product. Buyers, applications, CLIs, and autonomous agents call the hosted gateway endpoint. the gateway handles the x402 payment requirement, PYUSD settlement on Kite, provider request forwarding, receipts, and proof metadata.
 
 You do **not** need to clone the app or rebuild your API around blockchain code. Your API only needs normal HTTP endpoints that the gateway can call after payment is settled or reserved.
 
@@ -59,7 +59,7 @@ The paid execution still belongs to the gateway:
 1. OpenAI chooses the tools and payloads.
 2. the gateway quotes every selected product.
 3. the gateway skips tools that would exceed the run budget.
-4. the gateway pays x402/USDT with the configured agent signer in production mode.
+4. the gateway pays x402/PYUSD with the configured agent signer in production mode.
 5. the gateway stores receipts, response hashes, and final deliverables.
 6. the gateway writes the Kite proof when the run is attested.
 
@@ -277,7 +277,7 @@ Pricing decides how the gateway calculates the x402 payment requirement.
 | \`fixed\` | Predictable per-call work | One exact price per call. |
 | \`credit_metered\` | Variable work based on duration, tokens, output size, or provider credits | Quote first, pay before expensive work, compare final usage later. |
 
-Credit-metered products should expose a cheap quote endpoint or a deterministic request field. the gateway converts that number into USDT with your configured rate and multiplier.
+Credit-metered products should expose a cheap quote endpoint or a deterministic request field. the gateway converts that number into PYUSD with your configured rate and multiplier.
 `
   },
   {
@@ -294,11 +294,11 @@ Choose \`fixed\` when every successful call costs the same. Choose \`credit_mete
   {
     id: 'field-priceUsd',
     group: 'Pricing',
-    title: 'Price in USDT or fallback price',
+    title: 'Price in PYUSD or fallback price',
     body: `
-For fixed pricing, this is the exact USDT price per paid call. For credit-metered pricing, this is the fallback price if quote calculation is unavailable.
+For fixed pricing, this is the exact PYUSD price per paid call. For credit-metered pricing, this is the fallback price if quote calculation is unavailable.
 
-**Input:** numeric USDT amount such as \`0.08\`, \`1\`, or \`25\`.  
+**Input:** numeric PYUSD amount such as \`0.08\`, \`1\`, or \`25\`.  
 **Avoid:** currency symbols, text, negative numbers, or zero.
 
 Validation: positive number up to 100000.
@@ -381,15 +381,15 @@ If actual usage is higher than the prepaid quote, the gateway can lock the final
   {
     id: 'field-pricingCreditToUsdtRate',
     group: 'Pricing',
-    title: 'USDT per credit',
+    title: 'PYUSD per credit',
     body: `
-Conversion rate from provider usage units to USDT.
+Conversion rate from provider usage units to PYUSD.
 
-Example: if 100 credits should cost 1 USDT, enter \`0.01\`.
+Example: if 100 credits should cost 1 PYUSD, enter \`0.01\`.
 
 \`\`\`txt
-credits * USDT per credit * multiplier = quoted USDT
-180 * 0.01 * 1.2 = 2.16 USDT
+credits * PYUSD per credit * multiplier = quoted PYUSD
+180 * 0.01 * 1.2 = 2.16 PYUSD
 \`\`\`
 
 Required for credit-metered pricing.
@@ -400,7 +400,7 @@ Required for credit-metered pricing.
     group: 'Pricing',
     title: 'Pricing multiplier',
     body: `
-Optional markup or discount applied after the credit-to-USDT conversion.
+Optional markup or discount applied after the credit-to-PYUSD conversion.
 
 | Value | Meaning |
 | --- | --- |
@@ -414,7 +414,7 @@ Validation: positive number.
   {
     id: 'field-pricingMinimumChargeUsd',
     group: 'Pricing',
-    title: 'Minimum charge USDT',
+    title: 'Minimum charge PYUSD',
     body: `
 Optional floor so very small jobs still cover provider and gateway overhead.
 
@@ -424,7 +424,7 @@ Use \`0\` when you do not need a minimum. Use values like \`0.05\` or \`1\` when
   {
     id: 'field-pricingMaximumChargeUsd',
     group: 'Pricing',
-    title: 'Maximum charge USDT',
+    title: 'Maximum charge PYUSD',
     body: `
 Optional cap for buyer safety.
 
@@ -811,7 +811,7 @@ app.post("/api/summarize", async (req, res) => {
 })
 \`\`\`
 
-List this as \`pricingModel: "fixed"\`. the gateway charges the configured USDT amount when the paid request succeeds.
+List this as \`pricingModel: "fixed"\`. the gateway charges the configured PYUSD amount when the paid request succeeds.
 
 ## Credit-metered async API
 

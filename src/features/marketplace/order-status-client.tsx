@@ -1282,7 +1282,7 @@ function OrderSnapshotCard({ order }: { order: MarketplaceOrder }) {
         {order.actualAmountUsdt ? (
           <SummaryTile label='Final usage' value={order.actualAmountUsdt} />
         ) : null}
-        {order.deltaAmountUsdt && order.deltaAmountUsdt !== '0.00 USDT' ? (
+        {order.deltaAmountUsdt && order.deltaAmountUsdt !== '0.00 PYUSD' ? (
           <SummaryTile label='Delta' value={order.deltaAmountUsdt} />
         ) : null}
         {order.resultReleaseStatus === 'refunded' && refundUrl ? (

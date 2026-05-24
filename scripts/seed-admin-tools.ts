@@ -138,7 +138,7 @@ function buildAdminToolProduct(
     category: seed.category,
     description: seed.description,
     priceUsd: seed.priceUsd,
-    priceLabel: `${seed.priceUsd.toFixed(2)} USDT`,
+    priceLabel: `${seed.priceUsd.toFixed(2)} PYUSD`,
     pricing: { model: 'fixed' },
     method: seed.method,
     endpointPath: `/api/x402/products/${seed.slug}/call`,

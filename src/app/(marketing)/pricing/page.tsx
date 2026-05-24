@@ -23,7 +23,7 @@ const splitSteps = [
     icon: WalletCards,
     title: 'Buyer pays the listed price',
     description:
-      'The API card shows the USDT amount before the buyer or agent runs the call.'
+      'The API card shows the PYUSD amount before the buyer or agent runs the call.'
   },
   {
     icon: ReceiptText,
@@ -77,7 +77,7 @@ export default function PricingPage() {
           <p className='text-muted-foreground max-w-2xl text-base leading-7'>
             List APIs for free, then upgrade when lower platform fees, stronger
             analytics, and better provider visibility matter. Buyers still pay
-            the listed USDT price. Your plan controls the provider share after
+            the listed PYUSD price. Your plan controls the provider share after
             successful settlement.
           </p>
           <div className='flex flex-wrap gap-3'>
@@ -199,7 +199,7 @@ export default function PricingPage() {
               Simple receipt math for every successful call.
             </h2>
             <p className='text-muted-foreground mt-3 text-sm leading-6'>
-              The buyer sees one listed USDT price. the gateway records the
+              The buyer sees one listed PYUSD price. the gateway records the
               provider plan on the receipt, then calculates platform fee and
               provider amount from that plan.
             </p>

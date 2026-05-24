@@ -34,7 +34,7 @@ export const orderStatusDetails: Record<OrderStatus, string> = {
   ready:
     'The provider finished processing. The result can be released to the buyer.',
   delta_payment_required:
-    'The final metered cost is higher than the prepaid quote. Pay the remaining USDT before the result is revealed.',
+    'The final metered cost is higher than the prepaid quote. Pay the remaining PYUSD before the result is revealed.',
   completed: 'The provider response is ready for the buyer.',
   failed: 'The provider request failed and can be retried with a new request.',
   expired: 'The request window closed before completion.'

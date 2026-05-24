@@ -109,7 +109,7 @@ export default async function AdminProductsPage({
           },
           {
             label: 'Provider revenue',
-            value: `${totalRevenue.toFixed(2)} USDT`,
+            value: `${totalRevenue.toFixed(2)} PYUSD`,
             detail: 'Released provider share',
             icon: CircleDollarSign
           }
@@ -213,7 +213,7 @@ function productColumns(): ServerDataTableColumn<ApiProduct>[] {
         <div>
           <p className='font-semibold'>{product.calls} calls</p>
           <p className='text-muted-foreground mt-2 text-xs'>
-            {product.revenueUsdt} USDT earned
+            {product.revenueUsdt} PYUSD earned
           </p>
         </div>
       )

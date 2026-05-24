@@ -102,7 +102,7 @@ export default async function AdminPage() {
         />
         <AdminMetric
           icon={BarChart3}
-          label='USDT volume'
+          label='PYUSD volume'
           value={`${marketplaceMetrics.totalRevenueUsdt}`}
         />
         <AdminMetric
@@ -174,7 +174,7 @@ export default async function AdminPage() {
             >
               <span className='block font-semibold'>Receipts</span>
               <span className='text-foreground/60 mt-1 block text-sm'>
-                Reconcile USDT settlements, provider share, and platform fees.
+                Reconcile PYUSD settlements, provider share, and platform fees.
               </span>
             </Link>
             <Link

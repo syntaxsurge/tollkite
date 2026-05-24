@@ -182,7 +182,7 @@ export default async function BillingPage({ searchParams }: BillingPageProps) {
             ['Runs', agentMetrics.totalRuns.toString()],
             ['Completed', agentMetrics.completedRuns.toString()],
             ['Proofs', agentMetrics.proofCount.toString()],
-            ['Spend', `${agentMetrics.totalSpendUsdt} USDT`]
+            ['Spend', `${agentMetrics.totalSpendUsdt} PYUSD`]
           ].map(([label, value]) => (
             <div key={label} className='bg-muted rounded-lg p-4'>
               <p className='text-foreground/60 text-xs uppercase'>{label}</p>
@@ -247,7 +247,7 @@ export default async function BillingPage({ searchParams }: BillingPageProps) {
         <div className='flex flex-col justify-between gap-3 lg:flex-row lg:items-start'>
           <div>
             <p className='text-foreground/60 text-xs tracking-[0.16em] uppercase'>
-              USDT receipts
+              PYUSD receipts
             </p>
             <h2 className='font-display mt-2 text-2xl'>Recent settlements</h2>
             <p className='text-foreground/65 mt-2 text-sm leading-6'>
@@ -313,7 +313,7 @@ function apiKeyColumns(): ServerDataTableColumn<BillingApiKeyRow>[] {
       key: 'balance',
       label: 'Balance',
       sortKey: 'balance',
-      render: row => <p className='font-semibold'>{row.balanceUsdt} USDT</p>
+      render: row => <p className='font-semibold'>{row.balanceUsdt} PYUSD</p>
     },
     {
       key: 'activity',

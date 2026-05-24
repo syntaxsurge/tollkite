@@ -82,7 +82,7 @@ function getProviderSeeds(): ProviderSeed[] {
       provider: {
         slug: process.env.ADMIN_TOOLS_PROVIDER_USERNAME ?? 'platform-labs',
         description:
-          'Tollkite-operated provider profile for public USDT-ready API tools.',
+          'Tollkite-operated provider profile for public PYUSD-ready API tools.',
         websiteUrl: process.env.NEXT_PUBLIC_APP_URL
       }
     },
@@ -99,7 +99,7 @@ function getProviderSeeds(): ProviderSeed[] {
       provider: {
         slug: process.env.SEED_PROVIDER_USERNAME_1 ?? 'kite-data-works',
         description:
-          'Demo provider profile for USDT-settled public data and research APIs.',
+          'Demo provider profile for PYUSD-settled public data and research APIs.',
         websiteUrl: 'https://kite.org'
       }
     },
@@ -117,7 +117,7 @@ function getProviderSeeds(): ProviderSeed[] {
       provider: {
         slug: process.env.SEED_PROVIDER_USERNAME_2 ?? 'supernormal-commerce',
         description:
-          'Demo provider profile for USDT-powered commerce, checkout, and agent payment APIs.',
+          'Demo provider profile for PYUSD-powered commerce, checkout, and agent payment APIs.',
         websiteUrl: 'https://www.supernormal.foundation'
       }
     }

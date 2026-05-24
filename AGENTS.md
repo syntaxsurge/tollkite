@@ -706,7 +706,7 @@ Before creating a new helper or service file:
   retries and partially recovered failures do not request a larger refund than
   the current vault state can accept, and it checks the backend agent signer's
   settlement-token balance before submitting a return transfer so diagnostics
-  distinguish signer USDT shortages from the owner wallet's native gas balance.
+  distinguish signer PYUSD shortages from the owner wallet's native gas balance.
   Direct run reads refresh from Convex by run ID before using the in-memory run
   cache so polling clients see the latest persisted progress across server
   runtimes. Agent action progress records the settled x402 order/receipt and the
@@ -780,7 +780,7 @@ Before creating a new helper or service file:
   links, and writes on-chain proof attestations.
 - `/proofs/[proofId]` publicly displays non-sensitive autonomous run proof
   metadata, proof hash, receipt IDs, budget funding and refund metadata, total
-  USDT spend, attestation transaction, and explorer link.
+  PYUSD spend, attestation transaction, and explorer link.
 - Provider adapters live in `src/features/provider-adapters`; the registry uses
   the generic external HTTP adapter for provider-created listings. The external
   HTTP adapter forwards paid requests to the configured upstream endpoint,
@@ -795,7 +795,7 @@ Before creating a new helper or service file:
   without importing gateway settlement logic. Provider listings with server-side
   auth requirements must have their upstream secret configured before the
   gateway creates payable orders or x402 payment requirements.
-- `/marketplace` lists published provider-created USDT-paid API products in the
+- `/marketplace` lists published provider-created PYUSD-paid API products in the
   shared server-fed table with category filters, price badges, provider names,
   execution/result delivery context, agent-ready badges, and entry points for
   run-with-wallet, detail, and autonomous agent runs.
@@ -833,7 +833,7 @@ Before creating a new helper or service file:
   `src/features/marketplace/provider-product-form.tsx` and
   `src/features/marketplace/schemas.ts` to validate provider product metadata,
   schemas, upstream endpoint URL, upstream authentication requirements, async
-  polling requirements, runtime model, fixed or credit-metered USDT pricing,
+  polling requirements, runtime model, fixed or credit-metered PYUSD pricing,
   connected-wallet owner profile, agent readiness, OpenAPI-imported operation
   defaults, and visibility before posting to the product API route. Provider
   form labels link to field-specific anchors on `/developers/docs` instead of
@@ -852,15 +852,15 @@ Before creating a new helper or service file:
   draft, a launch checklist, payable schema-driven test runs, gateway endpoint
   copy support, product deletion, provider contract details, and
   request/response schema details.
-- `/provider/usage` shows the connected wallet's provider API calls, USDT
+- `/provider/usage` shows the connected wallet's provider API calls, PYUSD
   revenue, buyer wallets, request IDs, agent-run context, and status labels.
 - `/orders` uses the shared server-fed table for buyer request search, sorting,
   pagination, status, amount, and order-opening actions. `/orders/[orderId]`
   shows buyer request lifecycle state using shared order status labels and
   descriptions from `src/features/marketplace/status.ts`; order detail pages
-  sign x402 USDT payments with the connected browser wallet, check and submit
+  sign x402 PYUSD payments with the connected browser wallet, check and submit
   the required payment-token payment authorization transaction when needed, verify
-  USDT balance before asking for payment signatures, wait for the approval
+  PYUSD balance before asking for payment signatures, wait for the approval
   receipt and readable allowance, retry transient quote, allowance, signature,
   settlement, claim, and provider status errors with bounded exponential backoff
   while avoiding retries after receipt or payment artifacts are returned,
@@ -891,9 +891,9 @@ Before creating a new helper or service file:
   whether settlement happens after a successful response, after job acceptance,
   or when a completed result is claimed, and whether results are returned
   directly, polled/webhooked, or revealed after completion.
-- Marketplace products support fixed per-call USDT pricing and credit-metered
+- Marketplace products support fixed per-call PYUSD pricing and credit-metered
   pricing. Credit-metered products call a provider quote endpoint or read a
-  deterministic credit field before x402 settlement, convert credits to USDT
+  deterministic credit field before x402 settlement, convert credits to PYUSD
   with a configured rate and multiplier, settle the quoted amount before
   expensive provider work starts, route asynchronous metered payments to
   ApiPaymentEscrow when configured, wait for settlement and reserve transaction
@@ -905,15 +905,15 @@ Before creating a new helper or service file:
   response body in pricing errors, and record quote, paid, actual, escrow, and
   release metadata on orders and receipts.
 - `/receipts/[receiptId]` displays product, provider, buyer wallet, provider
-  wallet, USDT amount, fee split, network, transaction hash, and explorer link
+  wallet, PYUSD amount, fee split, network, transaction hash, and explorer link
   for settled API calls.
 - `/billing` displays workspace billing context, managed credit API-key
-  creation, USDT top-up records, API-key debit history, payment readiness,
-  autonomous agent spend, proof counts, and recent USDT receipt records.
+  creation, PYUSD top-up records, API-key debit history, payment readiness,
+  autonomous agent spend, proof counts, and recent PYUSD receipt records.
 - `/admin/products`, `/admin/orders`, `/admin/agents`, `/admin/receipts`,
   `/admin/subscriptions`, and `/admin/operations` provide allowlisted
   operational review for marketplace ownership, paid API request records,
-  autonomous agent budgets and statuses, USDT settlement receipts, on-chain
+  autonomous agent budgets and statuses, PYUSD settlement receipts, on-chain
   subscribers, deployment readiness, contract configuration, and provider
   adapter health. These pages use the shared server-fed table for scalable
   search, sorting, pagination, and scoped bulk actions where lists can grow.

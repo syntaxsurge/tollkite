@@ -11,7 +11,7 @@ import { envServer } from '@/lib/env/env.server'
 
 export const AGENT_PLANNER_PROMPT = [
   'You are Launch Pack Agent.',
-  'Goal: choose the smallest useful set of paid API tools that can complete the user objective inside the USDT budget.',
+  'Goal: choose the smallest useful set of paid API tools that can complete the user objective inside the PYUSD budget.',
   'Rules:',
   '1. Prefer real data/research tools before expensive media tools.',
   '2. Use async media generation only when the objective asks for launch assets, video, creative collateral, or a media deliverable.',
@@ -155,7 +155,7 @@ export async function buildDeterministicAgentPlan(
       mode: 'deterministic',
       skippedTools: buildDeterministicSkippedTools(run, actions),
       expectedDeliverables: defaultExpectedDeliverables(),
-      budgetStrategy: `Use the highest-ranked relevant tools without exceeding ${run.budgetCapUsdt.toFixed(2)} USDT.`,
+      budgetStrategy: `Use the highest-ranked relevant tools without exceeding ${run.budgetCapUsdt.toFixed(2)} PYUSD.`,
       synthesisInstructions:
         'Summarize the paid tool outputs into a launch brief, developer copy, market signal, and optional project link.'
     })
@@ -202,10 +202,10 @@ export function buildPlannerSummary(
       options?.skippedTools ?? buildDeterministicSkippedTools(run, actions),
     expectedDeliverables:
       options?.expectedDeliverables ?? defaultExpectedDeliverables(),
-    budgetInstruction: `Spend no more than ${run.budgetCapUsdt.toFixed(2)} USDT across at most ${run.maxPaidActions} paid action(s).`,
+    budgetInstruction: `Spend no more than ${run.budgetCapUsdt.toFixed(2)} PYUSD across at most ${run.maxPaidActions} paid action(s).`,
     budgetStrategy:
       options?.budgetStrategy ??
-      `Run the most relevant tools first and stop before exceeding ${run.budgetCapUsdt.toFixed(2)} USDT.`,
+      `Run the most relevant tools first and stop before exceeding ${run.budgetCapUsdt.toFixed(2)} PYUSD.`,
     synthesisInstructions:
       options?.synthesisInstructions ??
       'Turn completed paid tool outputs into a concise launch pack and proof explanation.'

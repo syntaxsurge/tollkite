@@ -18,7 +18,7 @@ export default function DevelopersPage() {
     },
     {
       title: 'Protect the call',
-      detail: 'Return HTTP 402 until the USDT payment is valid.'
+      detail: 'Return HTTP 402 until the PYUSD payment is valid.'
     },
     {
       title: 'Use x402 directly',

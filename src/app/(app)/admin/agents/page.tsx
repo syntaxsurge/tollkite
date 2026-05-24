@@ -86,7 +86,7 @@ export default async function AdminAgentsPage({
           },
           {
             label: 'Agent spend',
-            value: `${metrics.totalSpendUsdt} USDT`,
+            value: `${metrics.totalSpendUsdt} PYUSD`,
             detail: 'Recorded tool spend',
             icon: CircleDollarSign
           },
@@ -178,9 +178,9 @@ function agentColumns(): ServerDataTableColumn<AgentRun>[] {
       sortKey: 'funded',
       render: run => (
         <div>
-          <p className='font-semibold'>{run.fundedAmountUsdt} USDT funded</p>
+          <p className='font-semibold'>{run.fundedAmountUsdt} PYUSD funded</p>
           <p className='text-muted-foreground mt-2 text-xs'>
-            {run.spentAmountUsdt} USDT spent
+            {run.spentAmountUsdt} PYUSD spent
           </p>
         </div>
       )

@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card'
 const sections = [
   {
     title: 'Use of the app',
-    body: 'The app provides USDT-native API marketplace, provider dashboard, wallet, admin, and receipt surfaces for paid API commerce.'
+    body: 'The app provides PYUSD-native API marketplace, provider dashboard, wallet, admin, and receipt surfaces for paid API commerce.'
   },
   {
     title: 'Billing terms',

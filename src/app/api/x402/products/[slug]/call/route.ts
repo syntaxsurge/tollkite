@@ -789,7 +789,7 @@ async function handlePrepaidAsyncProviderCall({
     deltaAmountUsdt:
       usageDelta && usageDelta.deltaUsd !== 0
         ? usageDelta.deltaLabel
-        : '0.00 USDT',
+        : '0.00 PYUSD',
     resultReleaseStatus,
     escrowStatus: escrowContext
       ? shouldReleaseEscrow
@@ -814,7 +814,7 @@ async function handlePrepaidAsyncProviderCall({
       deltaAmountUsdt:
         usageDelta && usageDelta.deltaUsd !== 0
           ? usageDelta.deltaLabel
-          : '0.00 USDT',
+          : '0.00 PYUSD',
       resultReleaseStatus
     },
     data: responsePayload,

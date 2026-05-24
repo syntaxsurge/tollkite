@@ -66,7 +66,7 @@ export async function POST(
 
   if (!latestTopUp) {
     return NextResponse.json(
-      { error: 'Managed credit balance is empty. Top up with USDT first.' },
+      { error: 'Managed credit balance is empty. Top up with PYUSD first.' },
       { status: 402 }
     )
   }
@@ -125,7 +125,7 @@ export async function POST(
     await refundManagedCreditDebit({
       apiKey,
       debitId: debitResult.debit.id,
-      note: 'Provider failed after reservation; reserved USDT was returned to the managed credit balance.'
+      note: 'Provider failed after reservation; reserved PYUSD was returned to the managed credit balance.'
     })
 
     return NextResponse.json(
@@ -160,9 +160,9 @@ export async function POST(
           actualAmountUsdt: usageDelta.actualPrice.amountUsd,
           note:
             usageDelta.releaseStatus === 'credit_due'
-              ? 'Final usage was lower than the reserved quote; unused USDT was returned to the managed credit balance.'
+              ? 'Final usage was lower than the reserved quote; unused PYUSD was returned to the managed credit balance.'
               : usageDelta.releaseStatus === 'delta_payment_required'
-                ? 'Final usage exceeded the reserved quote; result release requires the remaining USDT.'
+                ? 'Final usage exceeded the reserved quote; result release requires the remaining PYUSD.'
                 : 'Final metered usage matched the reserved quote.'
         })
       : null
@@ -229,7 +229,7 @@ export async function POST(
     deltaAmountUsdt:
       usageDelta && usageDelta.deltaUsd !== 0
         ? usageDelta.deltaLabel
-        : '0.00 USDT',
+        : '0.00 PYUSD',
     pricingSource: resolvedPrice.source,
     resultReleaseStatus,
     requestId,
@@ -268,7 +268,7 @@ export async function POST(
       deltaAmountUsdt:
         usageDelta && usageDelta.deltaUsd !== 0
           ? usageDelta.deltaLabel
-          : '0.00 USDT',
+          : '0.00 PYUSD',
       resultReleaseStatus
     },
     data: responsePayload,

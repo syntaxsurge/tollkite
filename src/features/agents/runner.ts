@@ -176,7 +176,7 @@ export async function executeAgentRunActions(
     deliverables,
     summary: completed
       ? receiptCount > 0
-        ? `The launch-pack agent completed ${completedActions.length} actions, captured ${receiptCount} USDT receipt records, and prepared an auditable on-chain proof package.`
+        ? `The launch-pack agent completed ${completedActions.length} actions, captured ${receiptCount} PYUSD receipt records, and prepared an auditable on-chain proof package.`
         : 'The launch-pack agent completed without receipt-backed paid actions.'
       : 'The launch-pack agent stopped before completing every selected paid action.',
     status: completed ? 'completed' : 'failed'
@@ -231,7 +231,7 @@ async function executeAgentAction(
       status: 'skipped',
       amountUsdt: quotedPrice.amountLabel,
       errorMessage:
-        'Skipped because the quoted USDT price would exceed the agent budget.',
+        'Skipped because the quoted PYUSD price would exceed the agent budget.',
       completedAt: new Date().toISOString()
     } satisfies AgentAction
   }
@@ -420,7 +420,7 @@ async function executeAgentAction(
           ? caughtError.message
           : 'The paid x402 request failed.',
         escrowHandoffFailure
-          ? 'The x402 settlement already moved the advanced USDT out of the agent signer, so the gateway did not try to return funds from the signer. Retry escrow reservation with the floor-safe escrow gas path or reconcile the escrow balance before refunding the vault.'
+          ? 'The x402 settlement already moved the advanced PYUSD out of the agent signer, so the gateway did not try to return funds from the signer. Retry escrow reservation with the floor-safe escrow gas path or reconcile the escrow balance before refunding the vault.'
           : undefined,
         refundError
           ? `the gateway advanced this action from the vault, but could not return the unused signer funds: ${refundError}`
@@ -547,7 +547,7 @@ async function refundAgentVaultAdvance({
 
   if (refundableAmount <= 0n) {
     return {
-      vaultRefundedAmountUsdt: '0.00 USDT'
+      vaultRefundedAmountUsdt: '0.00 PYUSD'
     } satisfies Partial<AgentAction>
   }
 
@@ -1170,7 +1170,7 @@ async function returnAgentSignerUsdtToVault(amount: bigint) {
 
   if (signerBalance < amount) {
     throw new Error(
-      `Agent signer cannot return unused USDT to the vault because it only has ${formatUsdtAmount(
+      `Agent signer cannot return unused PYUSD to the vault because it only has ${formatUsdtAmount(
         signerBalance
       )} available and ${formatUsdtAmount(
         amount
@@ -1195,8 +1195,8 @@ async function returnAgentSignerUsdtToVault(amount: bigint) {
     to: paymentTokenAddress as Address,
     data,
     confirmedMessage:
-      'Agent signer returned unused USDT to the agent run vault.',
-    failureMessage: `Agent signer could not return unused USDT to the vault. Expected ${formatUsdtAmount(
+      'Agent signer returned unused PYUSD to the agent run vault.',
+    failureMessage: `Agent signer could not return unused PYUSD to the vault. Expected ${formatUsdtAmount(
       amount
     )} and available before return was ${formatUsdtAmount(
       signerBalance
@@ -1438,7 +1438,7 @@ async function describeAgentPaidCallError(error: unknown, action: AgentAction) {
   )
 
   if (!privateKey || requiredAmount <= 0n) {
-    return `Agent signer does not have enough USDT for x402 settlement. This is the backend agent signer's settlement-token balance, not the owner's ${defaultAppChain.nativeCurrency.symbol} gas balance. ${message}`
+    return `Agent signer does not have enough PYUSD for x402 settlement. This is the backend agent signer's settlement-token balance, not the owner's ${defaultAppChain.nativeCurrency.symbol} gas balance. ${message}`
   }
 
   const account = privateKeyToAccount(
@@ -1450,7 +1450,7 @@ async function describeAgentPaidCallError(error: unknown, action: AgentAction) {
   const balanceText =
     balance === null ? 'unreadable' : formatUsdtAmount(balance)
 
-  return `Agent signer does not have enough USDT for x402 settlement. Required at least ${formatUsdtAmount(
+  return `Agent signer does not have enough PYUSD for x402 settlement. Required at least ${formatUsdtAmount(
     requiredAmount
   )}; available on the backend agent signer is ${balanceText}. This is not the owner's ${defaultAppChain.nativeCurrency.symbol} gas balance. ${message}`
 }
@@ -1509,7 +1509,7 @@ async function ensureAgentPaymentTokenReady(amountUsd: number) {
     data: approval.data,
     confirmedMessage:
       'Agent signer Permit2 allowance was approved for x402 settlement.',
-    failureMessage: `Agent signer received vault USDT but could not submit the Permit2 approval. Fund the agent signer with a small amount of ${defaultAppChain.nativeCurrency.symbol} on ${defaultAppChain.shortName} for gas.`
+    failureMessage: `Agent signer received vault PYUSD but could not submit the Permit2 approval. Fund the agent signer with a small amount of ${defaultAppChain.nativeCurrency.symbol} on ${defaultAppChain.shortName} for gas.`
   })
 
   await waitForAgentPermit2Allowance({
@@ -1556,7 +1556,7 @@ async function waitForAgentSignerUsdtBalance({
   }
 
   throw new Error(
-    `Agent signer did not receive enough USDT from AgentRunVault after waiting for the recordSpend transfer to become readable. Required ${formatUsdtAmount(
+    `Agent signer did not receive enough PYUSD from AgentRunVault after waiting for the recordSpend transfer to become readable. Required ${formatUsdtAmount(
       requiredAmount
     )}, available ${formatUsdtAmount(
       lastBalance
@@ -1589,7 +1589,7 @@ async function waitForAgentPermit2Allowance({
   }
 
   throw new Error(
-    'Agent USDT Permit2 approval was submitted, but the allowance is not readable yet. Retry the agent run in a moment.'
+    'Agent PYUSD Permit2 approval was submitted, but the allowance is not readable yet. Retry the agent run in a moment.'
   )
 }
 
@@ -1599,7 +1599,7 @@ function formatUsdtAmount(amount: bigint) {
     {
       maximumFractionDigits: 6
     }
-  )} USDT`
+  )} PYUSD`
 }
 
 async function readJsonResponse(response: Response) {
@@ -1628,7 +1628,7 @@ function describePaidCallFailure(
         paymentResult.settleResponse.errorReason
       ]
         .filter(Boolean)
-        .join(' ') || 'USDT settlement failed.'
+        .join(' ') || 'PYUSD settlement failed.'
     )
   }
 

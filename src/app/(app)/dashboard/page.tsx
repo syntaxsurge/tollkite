@@ -27,7 +27,7 @@ export default async function DashboardPage() {
         <div className='grid gap-6 lg:grid-cols-[1fr_320px] lg:items-end'>
           <div className='space-y-4'>
             <Badge>Buyer dashboard</Badge>
-            <h1 className='font-display text-4xl'>Your USDT API workspace</h1>
+            <h1 className='font-display text-4xl'>Your PYUSD API workspace</h1>
             <p className='text-foreground/70 max-w-2xl text-sm leading-6'>
               Browse APIs, launch agents, and track receipts from one place.
             </p>
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
         {[
           ['Published APIs', metrics.productCount.toString()],
           ['Recorded calls', metrics.totalCalls.toLocaleString()],
-          ['USDT volume', metrics.totalRevenueUsdt],
+          ['PYUSD volume', metrics.totalRevenueUsdt],
           ['Network', defaultAppChain.shortName]
         ].map(([label, value]) => (
           <Card key={label} className='relative overflow-hidden'>
@@ -143,7 +143,7 @@ export default async function DashboardPage() {
               ['Runs', agentMetrics.totalRuns.toString()],
               ['Completed', agentMetrics.completedRuns.toString()],
               ['Proofs', agentMetrics.proofCount.toString()],
-              ['Spend', `${agentMetrics.totalSpendUsdt} USDT`]
+              ['Spend', `${agentMetrics.totalSpendUsdt} PYUSD`]
             ].map(([label, value]) => (
               <div key={label} className='bg-muted rounded-lg p-4'>
                 <p className='text-foreground/60 text-xs uppercase'>{label}</p>

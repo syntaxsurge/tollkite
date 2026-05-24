@@ -92,7 +92,7 @@ export default async function ProviderUsagePage({
         {[
           {
             label: 'Provider earnings',
-            value: `${metrics.providerRevenueUsdt} USDT`,
+            value: `${metrics.providerRevenueUsdt} PYUSD`,
             detail: 'Released provider share',
             icon: CircleDollarSign
           },
