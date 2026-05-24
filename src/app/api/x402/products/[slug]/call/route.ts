@@ -1250,6 +1250,15 @@ function buildSettlementGuidance(
     return `The paying wallet does not appear to have enough ${paymentTokenSymbol} on the configured network for this API call.`
   }
 
+  if (
+    haystack.includes('invalid_exact_evm_transaction_simulation_failed') ||
+    haystack.includes('invalid_exact_evm_eip3009_not_supported')
+  ) {
+    return paymentTokenTransferMethod === 'eip3009'
+      ? `The configured ${paymentTokenSymbol} token did not accept the EIP-3009 transferWithAuthorization settlement simulation. Use an EIP-3009-compatible payment token, or switch NEXT_PUBLIC_PAYMENT_TOKEN_TRANSFER_METHOD to a supported transfer method for this chain.`
+      : `The configured ${paymentTokenSymbol} token transfer method did not pass x402 settlement simulation on the configured chain. Confirm the token, transfer method, and deployed x402 support contracts match.`
+  }
+
   if (haystack.includes('allowance') || haystack.includes('permit2')) {
     return `The paying wallet needs to approve ${paymentTokenSymbol} Permit2 allowance before this x402 payment can settle.`
   }

@@ -19,7 +19,11 @@ import {
   buildExplorerUrl,
   buildReceiptAmounts
 } from '@/features/marketplace/receipts'
-import { x402Network } from '@/lib/config/chains'
+import {
+  paymentTokenSymbol,
+  paymentTokenTransferMethod,
+  x402Network
+} from '@/lib/config/chains'
 import { releaseEscrowPayment } from '@/lib/contracts/api-payment-escrow'
 import { NextRequestAdapter } from '@/lib/x402/next-request-adapter'
 import {
@@ -277,8 +281,11 @@ async function settleClaim({
         error: 'USDT delta settlement failed.',
         reason: settlement.errorReason,
         message: settlement.errorMessage,
-        guidance:
-          'Confirm the buyer wallet has enough USDT and native gas on the configured network, then try again.'
+        guidance: buildClaimSettlementGuidance(
+          settlement.errorReason,
+          settlement.errorMessage,
+          settlement.response.body
+        )
       },
       {
         status: settlement.response.status,
@@ -291,6 +298,31 @@ async function settleClaim({
   }
 
   return settlement
+}
+
+function buildClaimSettlementGuidance(
+  reason: string | undefined,
+  message: string | undefined,
+  details: unknown
+) {
+  const haystack = [
+    reason,
+    message,
+    typeof details === 'string' ? details : JSON.stringify(details ?? '')
+  ]
+    .join(' ')
+    .toLowerCase()
+
+  if (
+    haystack.includes('invalid_exact_evm_transaction_simulation_failed') ||
+    haystack.includes('invalid_exact_evm_eip3009_not_supported')
+  ) {
+    return paymentTokenTransferMethod === 'eip3009'
+      ? `The configured ${paymentTokenSymbol} token did not accept the EIP-3009 transferWithAuthorization settlement simulation. Use an EIP-3009-compatible payment token, or switch NEXT_PUBLIC_PAYMENT_TOKEN_TRANSFER_METHOD to a supported transfer method for this chain.`
+      : `The configured ${paymentTokenSymbol} token transfer method did not pass x402 settlement simulation on the configured chain. Confirm the token, transfer method, and deployed x402 support contracts match.`
+  }
+
+  return `Confirm the buyer wallet has enough ${paymentTokenSymbol} and native gas on the configured network, then try again.`
 }
 
 function parseUsdtAmount(value: string | undefined) {
